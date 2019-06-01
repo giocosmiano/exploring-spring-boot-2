@@ -1,0 +1,9 @@
+// creating multi-module project in gradle/maven
+// see https://github.com/spring-guides/gs-multi-module
+
+pluginManagement {
+	repositories {
+		gradlePluginPortal()
+	}
+}
+rootProject.name = 'ch01-quick-start'

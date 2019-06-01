@@ -1,0 +1,15 @@
+/*
+pluginManagement {
+	repositories {
+		gradlePluginPortal()
+	}
+}
+*/
+
+// creating multi-module project in gradle/maven
+// see https://github.com/spring-guides/gs-multi-module
+
+rootProject.name = 'exploring-spring-boot-2'
+
+include 'ch01-quick-start'
+
