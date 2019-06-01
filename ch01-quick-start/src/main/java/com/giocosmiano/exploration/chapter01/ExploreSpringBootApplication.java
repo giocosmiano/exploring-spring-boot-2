@@ -1,4 +1,4 @@
-package com.giocosmiano.exploration.springboot;
+package com.giocosmiano.exploration.chapter01;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

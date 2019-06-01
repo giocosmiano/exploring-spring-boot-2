@@ -1,7 +1,7 @@
-package com.giocosmiano.exploration.springboot.clr;
+package com.giocosmiano.exploration.chapter01.clr;
 
-import com.giocosmiano.exploration.springboot.domain.Chapter;
-import com.giocosmiano.exploration.springboot.repository.ChapterRepository;
+import com.giocosmiano.exploration.chapter01.domain.Chapter;
+import com.giocosmiano.exploration.chapter01.repository.ChapterRepository;
 
 import reactor.core.publisher.Flux;
 

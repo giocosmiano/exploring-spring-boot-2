@@ -1,4 +1,4 @@
-package com.giocosmiano.exploration.springboot.domain;
+package com.giocosmiano.exploration.chapter01.domain;
 
 import lombok.Data;
 
