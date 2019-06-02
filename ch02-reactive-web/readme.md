@@ -61,7 +61,8 @@ $ java -jar ch02-reactive-web-0.0.1-SNAPSHOT.jar -Dos.detected.name=linux -Dos.d
 
  - [ReactiveX](http://reactivex.io/)
  - [Reactive Streams](http://www.reactive-streams.org/)
- - [Project Reactor - Core ibrary that Spring 5 uses for reactive programming model](http://projectreactor.io/)
+ - [Project Reactor - Core ibrary that Spring 5 uses for reactive programming model](https://projectreactor.io/)
+   - [Debugging Reactor](https://projectreactor.io/docs/core/release/reference/#debugging)
  - [Reactive Programming Part I: The Reactive Landscape](http://bit.ly/reactive-part-1)
  - [Reactive Programming Part II: Writing Some Code](http://bit.ly/reactive-part-2)
  - [Reactive Programming Part III: A Simple HTTP Server Application](http://bit.ly/reactive-part-3)
