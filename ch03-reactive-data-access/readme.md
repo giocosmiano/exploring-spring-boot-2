@@ -36,15 +36,14 @@ interface EmployeeRepository extends ReactiveCrudRepository<Employee, Long> {
    on the domain type ( `Employee` ). Because it can see that `Employee` has `firstName`, it has enough information to
    fashion a query. This also tips it off about expected criteria in the arguments ( `name` ).
 
- - Finally, Spring Data looks at the return type to decide what result set to assemble--in this case, a `Reactor Flux` that
-   we started to explore in the previous chapter. The entire query (`NOT` the query results), once assembled, is cached,
-   so, there is no overhead in using the query multiple times.   
+ - Finally, `Spring Data` looks at the return type to decide what result set to assemble. The entire query (`NOT` the query
+   results), once assembled, is cached, so there is no overhead in using the query multiple times.   
 
  - `Spring Data's` query-neutral approach is even better. Changing data stores doesn't require throwing away absolutely
    everything and starting over. The interface declared previously extends `Spring Data Commons`, not `Spring Data MongoDB`.
    The only data store details are in the domain object itself.   
 
- - Instead of Employee being some JPA-based entity definition, we can work on a MongoDB document-based one instead
+ - Instead of `Employee` being some JPA-based entity definition, we can work on a MongoDB document-based one instead
 ```java
 @Data
 @Document(collection="employees")
