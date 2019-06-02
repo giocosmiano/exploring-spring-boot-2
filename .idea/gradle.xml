@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/ch01-quick-start" />
+            <option value="$PROJECT_DIR$/ch02-reactive-web" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
