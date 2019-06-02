@@ -67,6 +67,9 @@ $ java -jar ch02-reactive-web-0.0.1-SNAPSHOT.jar -Dos.detected.name=linux -Dos.d
  - [Reactive Programming Part II: Writing Some Code](http://bit.ly/reactive-part-2)
  - [Reactive Programming Part III: A Simple HTTP Server Application](http://bit.ly/reactive-part-3)
  - [Understanding Reactive types](http://bit.ly/reactive-types)
+ - [Reactor Debugging Experience](https://spring.io/blog/2019/03/28/reactor-debugging-experience)
+ - [Testing and Debugging Reactor](https://www.cms.lk/testing-debugging-reactor/)
+ - [Doing Reactive Programming with Spring 5](https://stackify.com/reactive-spring-5/)
 
 
 ### Referenced frameworks/libraries
