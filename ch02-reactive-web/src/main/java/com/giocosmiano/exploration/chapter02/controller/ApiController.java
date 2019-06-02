@@ -3,14 +3,14 @@ package com.giocosmiano.exploration.chapter02.controller;
 import com.giocosmiano.exploration.chapter02.domain.Image;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Controller
+@RestController
 public class ApiController {
 
     private static final Logger log = LoggerFactory.getLogger(ApiController.class);

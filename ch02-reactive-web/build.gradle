@@ -1,4 +1,5 @@
 plugins {
+//	id "com.google.osdetector" version "1.6.2"
 	id 'org.springframework.boot' version '2.1.5.RELEASE'
 	id 'java'
 }
@@ -30,6 +31,8 @@ dependencies {
 	compile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 	compile 'org.springframework.boot:spring-boot-starter-actuator'
 
+	compile group: 'io.netty', name: 'netty-transport-native-epoll', version: '4.1.36.Final', classifier: 'linux-x86_64'
+	
 	compile 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
