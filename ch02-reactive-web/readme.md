@@ -146,7 +146,7 @@ java.lang.UnsatisfiedLinkError: no netty_transport_native_epoll_x86_64 in java.l
 	compile group: 'io.netty', name: 'netty-transport-native-epoll', version: '4.1.36.Final', classifier: 'linux-x86_64'
 ```
 
-   - Still have the same exceptions as above but now at least the application is starting
+ - Still have the same exceptions as above but now at least the application is starting
 ```
 2019-06-02 08:56:46.266 DEBUG 10389 --- [           main] i.n.util.internal.NativeLibraryLoader    : Successfully loaded the library /tmp/libnetty_transport_native_epoll_x86_648786809683648995047.so
 2019-06-02 08:56:46.289  INFO 10389 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 9000
@@ -156,11 +156,15 @@ java.lang.UnsatisfiedLinkError: no netty_transport_native_epoll_x86_64 in java.l
 2019-06-02 08:56:46.816  INFO 10389 --- [ntLoopGroup-2-2] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:3}] to localhost:40807
 ```
 
-   - [Netty's building native transports](https://github.com/netty/netty/wiki/Native-transports#building-the-native-transports)
+ - [Netty's building native transports](https://github.com/netty/netty/wiki/Native-transports#building-the-native-transports)
 ```
 $ sudo apt-get install autoconf automake libtool make tar gcc-multilib libaio-dev
 ```
 
+ - Running the application `ReactiveWebApplication` from the command line
+```
+$ java -jar ch02-reactive-web-0.0.1-SNAPSHOT.jar -Dos.detected.name=linux -Dos.detected.arch=x86_64 -Dos.detected.classifier=linux-x86_64
+```
 
 
 
