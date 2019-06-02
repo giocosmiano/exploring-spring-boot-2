@@ -54,6 +54,13 @@ public class Employee {
 }
 ```
 
+### [Spring Data Commons](https://docs.spring.io/spring-data/commons/docs/current/reference/html/)
+  It's the parent project for all [Spring Data](https://spring.io/projects/spring-data) implementations. It defines several concepts
+  implemented by every solution. For example, the concept of parsing finder signatures to put together a query request is defined here.
+  But the bits where this is transformed into a native query is supplied by the data store solution itself.
+  [Spring Data Commons](https://github.com/spring-projects/spring-data-commons) also provides various interfaces, allowing us to reduce
+  coupling in our code to the data store, such as `ReactiveCrudRepository`, and others
+
 ### Further readings
 
  - [ReactiveX](http://reactivex.io/)
@@ -76,7 +83,7 @@ public class Employee {
  - [Non-Blocking HTTP Multipart parser](https://github.com/synchronoss/nio-multipart)
  - [Spring Testing](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html)
 
-### Managing MongoDB Service in Ubuntu
+### [Installing/Managing MongoDB on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04)
 
  - MongoDB installs as a `systemd` service, which means that we can manage it using standard `systemd` commands alongside all other system services in Ubuntu.
 
