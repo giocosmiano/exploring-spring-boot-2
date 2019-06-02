@@ -47,9 +47,11 @@
      learning how to make things reactive. It's also important to know that `Spring MVC` isn't going away or slated for end of life.
      Both `Spring WebFlux` and `Spring MVC` will stay as actively supported options inside the Spring portfolio
      
-### Running the application `ReactiveWebApplication` from the command line (take note of the `-Dos.detected.` overrides because of issues below)
+### Running `ReactiveWebApplication` from the command line
+  - If there are exceptions like the ones below, use the `-Dos.detected.` arguments 
 
 ```
+$ java -jar ch02-reactive-web-0.0.1-SNAPSHOT.jar
 $ java -jar ch02-reactive-web-0.0.1-SNAPSHOT.jar -Dos.detected.name=linux -Dos.detected.arch=x86_64 -Dos.detected.classifier=linux-x86_64
 ```
  - [Application's main page](http://localhost:9000/)
@@ -74,8 +76,8 @@ $ java -jar ch02-reactive-web-0.0.1-SNAPSHOT.jar -Dos.detected.name=linux -Dos.d
  - [Spring Testing](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html)
 
 
-### Issues encountered on my Ubuntu 18.04 x64 when running the application `ReactiveWebApplication`
-```
+### Issues encountered on my Ubuntu 18.04 x64 when running `ReactiveWebApplication`
+```markdown
 2019-06-02 08:43:13.554 DEBUG 9062 --- [           main] i.n.util.internal.NativeLibraryLoader    : -Dio.netty.native.workdir: /tmp (io.netty.tmpdir)
 2019-06-02 08:43:13.554 DEBUG 9062 --- [           main] i.n.util.internal.NativeLibraryLoader    : -Dio.netty.native.deleteLibAfterLoading: true
 2019-06-02 08:43:13.555 DEBUG 9062 --- [           main] i.n.util.internal.NativeLibraryLoader    : -Dio.netty.native.tryPatchShadedId: true
@@ -151,7 +153,7 @@ java.lang.UnsatisfiedLinkError: no netty_transport_native_epoll_x86_64 in java.l
 ```
 
  - Still have the same exceptions as above but now at least the application is starting
-```
+```markdown
 2019-06-02 08:56:46.266 DEBUG 10389 --- [           main] i.n.util.internal.NativeLibraryLoader    : Successfully loaded the library /tmp/libnetty_transport_native_epoll_x86_648786809683648995047.so
 2019-06-02 08:56:46.289  INFO 10389 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 9000
 2019-06-02 08:56:46.292  INFO 10389 --- [           main] c.g.e.chapter02.ReactiveWebApplication   : Started ReactiveWebApplication in 4.311 seconds (JVM running for 4.75)
