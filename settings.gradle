@@ -13,4 +13,5 @@ rootProject.name = 'exploring-spring-boot-2'
 
 include 'ch01-quick-start'
 include 'ch02-reactive-web'
+include 'ch03-reactive-data-access'
 
