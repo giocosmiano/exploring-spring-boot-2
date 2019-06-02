@@ -47,9 +47,13 @@
      learning how to make things reactive. It's also important to know that `Spring MVC` isn't going away or slated for end of life.
      Both `Spring WebFlux` and `Spring MVC` will stay as actively supported options inside the Spring portfolio
      
-### Services
+### Running the application `ReactiveWebApplication` from the command line (take note of the `-Dos.detected.` overrides because of issues below)
 
-- [Images Service](http://localhost:9000/api/images)
+```
+$ java -jar ch02-reactive-web-0.0.1-SNAPSHOT.jar -Dos.detected.name=linux -Dos.detected.arch=x86_64 -Dos.detected.classifier=linux-x86_64
+```
+ - [Application's main page](http://localhost:9000/)
+ - [Images service to get the files](http://localhost:9000/api/images)
 
 ### Further readings
 
@@ -159,11 +163,6 @@ java.lang.UnsatisfiedLinkError: no netty_transport_native_epoll_x86_64 in java.l
  - [Netty's building native transports](https://github.com/netty/netty/wiki/Native-transports#building-the-native-transports)
 ```
 $ sudo apt-get install autoconf automake libtool make tar gcc-multilib libaio-dev
-```
-
- - Running the application `ReactiveWebApplication` from the command line
-```
-$ java -jar ch02-reactive-web-0.0.1-SNAPSHOT.jar -Dos.detected.name=linux -Dos.detected.arch=x86_64 -Dos.detected.classifier=linux-x86_64
 ```
 
 
