@@ -1,10 +1,13 @@
 package com.giocosmiano.exploration.chapter03.clr;
 
+import com.giocosmiano.exploration.chapter03.domain.Employee;
 import com.giocosmiano.exploration.chapter03.domain.Image;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 @Component
 public class InitDatabase {
@@ -19,21 +22,40 @@ public class InitDatabase {
     @Bean
     CommandLineRunner init(MongoOperations operations) {
         return args -> {
-            operations.dropCollection(Image.class);
-
-            operations.insert(new Image("1",
-                    "learning-spring-boot-cover.jpg"));
-
-            operations.insert(new Image("2",
-                    "learning-spring-boot-2nd-edition-cover.jpg"));
-
-            operations.insert(new Image("3",
-                    "bazinga.png"));
-
-            operations
-                    .findAll(Image.class)
-                    .forEach(image -> System.out.println(image.toString()));
+            initImages(operations);
+            initEmployees(operations);
         };
+    }
+
+    private void initImages(final MongoOperations operations) {
+        operations.dropCollection(Image.class);
+
+        operations.insert(new Image("1",
+                "learning-spring-boot-cover.jpg"));
+
+        operations.insert(new Image("2",
+                "learning-spring-boot-2nd-edition-cover.jpg"));
+
+        operations.insert(new Image("3",
+                "bazinga.png"));
+
+        operations
+                .findAll(Image.class)
+                .forEach(image -> System.out.println(image.toString()));
+    }
+
+    private void initEmployees(final MongoOperations operations) {
+        operations.dropCollection(Employee.class);
+
+        operations.insert(new Employee(UUID.randomUUID().toString(), "LeBron", "James", "Basketball Player"));
+        operations.insert(new Employee(UUID.randomUUID().toString(), "Michael", "Jordan", "Basketball Player"));
+        operations.insert(new Employee(UUID.randomUUID().toString(), "Stephen", "Curry", "Basketball Player"));
+        operations.insert(new Employee(UUID.randomUUID().toString(), "Tom", "Brady", "Football Player"));
+        operations.insert(new Employee(UUID.randomUUID().toString(), "Payton", "Manning", "Football Player"));
+        operations.insert(new Employee(UUID.randomUUID().toString(), "Wayne", "Gretzky", "Hockey Player"));
+        operations.insert(new Employee(UUID.randomUUID().toString(), "Sidney", "Crosby", "Hockey Player"));
+        operations.insert(new Employee(UUID.randomUUID().toString(), "Lionel", "Messi", "Football Player"));
+        operations.insert(new Employee(UUID.randomUUID().toString(), "Christiano", "Ronaldo", "Football Player"));
     }
 
     /*

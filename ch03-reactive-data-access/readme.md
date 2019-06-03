@@ -27,7 +27,7 @@ interface EmployeeRepository extends ReactiveCrudRepository<Employee, Long> {
 }
 ```
 
- - We are granted an out-of-the-box set of `CRUD` operations ( save , findById , findAll , delete , deleteById , count , exists , and more).
+ - We are granted an out-of-the-box set of `CRUD` operations (save, findById, findAll, delete, deleteById, count, exists, and more).
    We also have the ability to add custom finders purely by method signature ( `findByFirstName` in this example )
 
  - When Spring Data sees an interface extending its `Repository` marker interface (which `ReactiveCrudRepository`
@@ -54,12 +54,76 @@ public class Employee {
 }
 ```
 
+### Extending Spring Data's ReactiveQueryByExampleExecutor
+
+```java
+public interface EmployeeRepository extends
+        ReactiveCrudRepository<Employee, String>,
+        ReactiveQueryByExampleExecutor<Employee> {
+}
+```
+
+ - `ReactiveQueryByExampleExecutor` interface used to define the repository (provided by Spring Data Commons)
+```
+    <S extends T> Mono<S> findOne(Example<S> example);
+    <S extends T> Flux<S> findAll(Example<S> example);
+```
+
+ - Neither of these aforementioned methods have any properties whatsoever in their names compared to finders like `findByLastName`.
+   The big difference is the usage of `Example` as an argument. `Example` is a container provided by `Spring Data Commons` to define
+   the parameters of a query
+
+ - Simply put, an `Example` consists of a probe and a matcher. The probe is the POJO object containing all the values we wish to use
+   as criteria. The matcher is an `ExampleMatcher` that governs how the probe is used.
+
+ - `Examples`, by default, only query against non-null fields. That's a fancy way of saying that only the fields populated in the
+   probe are considered.
+
+ - To illustrate, the probe is hard coded, but in production, the value would be pulled from the request whether it was part of
+   a REST route, the body of a web request, or somewhere else
+
+```
+Employee e = new Employee();
+e.setLastName("baggins"); // Lowercase lastName
+
+ExampleMatcher matcher = ExampleMatcher.matching()
+  .withIgnoreCase()
+  .withMatcher("lastName", startsWith())
+  .withIncludeNullValues();
+
+Example<Employee> example = Example.of(e, matcher);
+```
+
+### Mongo Operations
+
+ - `MongoTemplate` brings the same power to bear on crafting MongoDB operations. It's very powerful, but there is a critical trade-off.
+   All code written using `MongoTemplate` is `MongoDB`-specific. Porting solutions to another data store is very difficult. Hence, it's
+   not recommended as the first solution, but as a tool to keep in our back pocket for critical operations that require highly tuned
+   `MongoDB` statements.
+                   
+ - To perform reactive MongoTemplate operations, there is a corresponding `ReactiveMongoTemplate` that supports `Reactor` types.
+   The recommended way to interact with `ReactiveMongoTemplate` is through its interface, `ReactiveMongoOperations`
+   
+ - The tool that actually conducts `MongoDB` repository operations under the hood is, in fact, a `MongoTemplate` (or a `ReactiveMongoTemplate`
+   depending on the nature of the repository).
+   
 ### [Spring Data Commons](https://docs.spring.io/spring-data/commons/docs/current/reference/html/)
-  It's the parent project for all [Spring Data](https://spring.io/projects/spring-data) implementations. It defines several concepts
-  implemented by every solution. For example, the concept of parsing finder signatures to put together a query request is defined here.
-  But the bits where this is transformed into a native query is supplied by the data store solution itself.
-  [Spring Data Commons](https://github.com/spring-projects/spring-data-commons) also provides various interfaces, allowing us to reduce
-  coupling in our code to the data store, such as `ReactiveCrudRepository`, and others
+ - It's the parent project for all [Spring Data](https://spring.io/projects/spring-data) implementations. It defines several concepts
+   implemented by every solution. For example, the concept of parsing finder signatures to put together a query request is defined here.
+   But the bits where this is transformed into a native query is supplied by the data store solution itself.
+   [Spring Data Commons](https://github.com/spring-projects/spring-data-commons) also provides various interfaces, allowing us to reduce
+   coupling in our code to the data store, such as `ReactiveCrudRepository`, and others
+
+ - Spring Data blocking APIs support void return types as well. In Reactor-based programming, the equivalent is Mono<Void>,
+   because the caller needs the ability to invoke subscribe()
+     
+### Running `ReactiveDataAccessApplication` from the command line
+```
+$ java -jar ch03-reactive-data-access-0.0.1-SNAPSHOT.jar
+```
+ - [Application's main page](http://localhost:9000/)
+ - [Images service to get the files](http://localhost:9000/api/images)
+ - [Employees service](http://localhost:9000/api/employees)
 
 ### Further readings
 
@@ -75,6 +139,7 @@ public class Employee {
  - [Testing and Debugging Reactor](https://www.cms.lk/testing-debugging-reactor/)
  - [Doing Reactive Programming with Spring 5](https://stackify.com/reactive-spring-5/)
  - [How to Install MongoDB on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04)
+ - [Spring Data lead Oliver Gierke's - Why field injection is evil](http://olivergierke.de/2013/11/why-field-injection-is-evil/)
 
 ### Referenced frameworks/libraries
  - [Reactive Web (embedded Netty + Spring WebFlux)](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html)
