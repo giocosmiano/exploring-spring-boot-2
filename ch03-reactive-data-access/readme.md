@@ -64,7 +64,7 @@ public interface EmployeeRepository extends
 ```
 
  - `ReactiveQueryByExampleExecutor` interface used to define the repository (provided by Spring Data Commons)
-```
+```java
     <S extends T> Mono<S> findOne(Example<S> example);
     <S extends T> Flux<S> findAll(Example<S> example);
 ```
@@ -80,9 +80,18 @@ public interface EmployeeRepository extends
    probe are considered.
 
  - To illustrate, the probe is hard coded, but in production, the value would be pulled from the request whether it was part of
-   a REST route, the body of a web request, or somewhere else
+   a `ReST` route, the body of a web request, or somewhere else
 
+```java
+Employee e = new Employee();
+e.setFirstName("Bilbo");
+
+Example<Employee> example = Example.of(e);
+
+Mono<Employee> singleEmployee = repository.findOne(example);
 ```
+
+```java
 Employee e = new Employee();
 e.setLastName("baggins"); // Lowercase lastName
 
@@ -92,9 +101,11 @@ ExampleMatcher matcher = ExampleMatcher.matching()
   .withIncludeNullValues();
 
 Example<Employee> example = Example.of(e, matcher);
+
+Flux<Employee> multipleEmployees = repository.findAll(example);
 ```
 
-### Mongo Operations
+### Reactive Mongo Operations
 
  - `MongoTemplate` brings the same power to bear on crafting MongoDB operations. It's very powerful, but there is a critical trade-off.
    All code written using `MongoTemplate` is `MongoDB`-specific. Porting solutions to another data store is very difficult. Hence, it's
@@ -107,6 +118,33 @@ Example<Employee> example = Example.of(e, matcher);
  - The tool that actually conducts `MongoDB` repository operations under the hood is, in fact, a `MongoTemplate` (or a `ReactiveMongoTemplate`
    depending on the nature of the repository).
    
+ - Some samples of `ReactiveMongoOperations`
+
+```java
+Employee e = new Employee();
+e.setFirstName("Bilbo");
+
+Example<Employee> example = Example.of(e);
+
+Mono<Employee> singleEmployee = operations.findOne(
+  new Query(byExample(example)), Employee.class);
+```
+
+```java
+Employee e = new Employee();
+e.setLastName("baggins"); // Lowercase lastName
+
+ExampleMatcher matcher = ExampleMatcher.matching()
+  .withIgnoreCase()
+  .withMatcher("lastName", startsWith())
+  .withIncludeNullValues();
+
+Example<Employee> example = Example.of(e, matcher);
+
+Flux<Employee> multipleEmployees = operations.find(
+  new Query(byExample(example)), Employee.class);
+```
+
 ### [Spring Data Commons](https://docs.spring.io/spring-data/commons/docs/current/reference/html/)
  - It's the parent project for all [Spring Data](https://spring.io/projects/spring-data) implementations. It defines several concepts
    implemented by every solution. For example, the concept of parsing finder signatures to put together a query request is defined here.

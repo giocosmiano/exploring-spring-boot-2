@@ -91,7 +91,8 @@ public class ImageService {
                             imageRepository.save(
                                     new Image(
                                             UUID.randomUUID().toString(),
-                                            file.filename()));
+                                            file.filename()))
+                                    .log("createImage-save");
 
                     Mono<Void> copyFile = Mono.just(
                             Paths.get(UPLOAD_ROOT, file.filename())
@@ -105,14 +106,17 @@ public class ImageService {
                                     throw new RuntimeException(e);
                                 }
                             })
-                            .log("createImage-newfile")
+                            .log("createImage-newFile")
                             .flatMap(file::transferTo)
                             .log("createImage-copy");
 
                     // using Mono.when() to combine two separate actions similar to promise.all() in JS
-                    return Mono.when(saveDatabaseImage, copyFile);
+                    return Mono.when(saveDatabaseImage, copyFile)
+                            .log("createImage-when");
                 })
-                .then();
+                .log("createImage-flatMap")
+                .then()
+                .log("createImage-done");
     }
 
     /*
@@ -132,7 +136,9 @@ public class ImageService {
         Mono<Void> deleteDatabaseImage =
                 imageRepository
                         .findByName(filename)
-                        .flatMap(imageRepository::delete);
+                        .log("deleteImage-find")
+                        .flatMap(imageRepository::delete)
+                        .log("deleteImage-record");
 
         Mono<Void> deleteFile = Mono.fromRunnable(() -> {
             try {
@@ -141,10 +147,14 @@ public class ImageService {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        });
+        })
+                .log("deleteImage-file")
+                .then();
 
         return Mono.when(deleteDatabaseImage, deleteFile)
-                .then();
+                .log("deleteImage-when")
+                .then()
+                .log("deleteImage-done");
     }
 
     /*

@@ -5,6 +5,11 @@ server:
 # Customize log levels
 logging:
   level:
+    reactor:
+      core: TRACE
+      util: TRACE
+    org:
+      springframework.data: TRACE
     io:
       netty: DEBUG
       reactor: DEBUG
