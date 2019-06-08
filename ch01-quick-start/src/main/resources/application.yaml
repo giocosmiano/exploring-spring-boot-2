@@ -1,6 +1,6 @@
 # Override the port Tomcat listens on
 server:
-  port: 9000
+  port: 9001
 
 # Customize log levels
 logging:

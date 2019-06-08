@@ -1,7 +1,15 @@
 ### Services
 
-- [Chapter Service](http://localhost:9000/chapters/)
-- [Actuator](http://localhost:9000/actuator)
+- [Chapter Service](http://localhost:9001/chapters/)
+- [Actuator](http://localhost:9001/actuator)
+
+     
+### Running `QuickStartApplication` from the command line
+```
+$ ./gradlew bootRun
+
+$ java -jar ch01-quick-start-0.0.1-SNAPSHOT.jar
+```
 
 
 ### Referenced frameworks/libraries
