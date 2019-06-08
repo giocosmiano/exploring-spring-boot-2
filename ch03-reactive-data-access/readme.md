@@ -157,6 +157,10 @@ Flux<Employee> multipleEmployees = operations.find(
      
 ### Running `ReactiveDataAccessApplication` from the command line
 ```
+$ ./gradlew bootRun
+```
+ - OR
+```
 $ java -jar ch03-reactive-data-access-0.0.1-SNAPSHOT.jar
 ```
  - [Application's main page](http://localhost:9000/)
