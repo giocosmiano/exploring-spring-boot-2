@@ -4,6 +4,7 @@ import com.giocosmiano.exploration.chapter04.domain.Image;
 import com.giocosmiano.exploration.chapter04.repository.ImageRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.stereotype.Service;
@@ -58,11 +59,18 @@ public class ImageService {
     }
 
     public Flux<Image> findAllImages() {
-        return imageRepository.findAll();
+        return imageRepository.findAll().log("findAllImages");
     }
 
     public Mono<Image> findOneImage(String filename) {
-        return imageRepository.findByName(filename);
+        return imageRepository.findByName(filename).log("findOneImage");
+    }
+
+    public Mono<Resource> findOneImageResource(String filename) {
+        return Mono.fromSupplier(() ->
+                resourceLoader.getResource(
+                        "file:" + UPLOAD_ROOT + "/" + filename))
+                .log("findOneImageResource");
     }
 
     /*

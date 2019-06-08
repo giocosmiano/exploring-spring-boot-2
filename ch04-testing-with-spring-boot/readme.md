@@ -1,5 +1,9 @@
 ### Running `TestingWithSpringBootApplication` from the command line
 ```
+$ ./gradlew bootRun
+```
+ - OR
+```
 $ java -jar ch04-testing-with-spring-boot-0.0.1-SNAPSHOT.jar
 ```
 
