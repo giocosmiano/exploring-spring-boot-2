@@ -7,9 +7,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ImageTests {
 
     /*
-     To make Lombok work
-     1) Install Lombok plugin for IntelliJ
-     2) Enable `Annotation Processors`
+     https://www.baeldung.com/lombok-ide
+     https://stackoverflow.com/questions/41161076/adding-lombok-plugin-to-intellij-project
+     To make Annotation work, such as Lombok, in IntelliJ
+     1) Install Lombok plugin
+     2) Go to Settings, Build/Execution/Deployment, Compiler, Enable `Annotation Processors`
      */
     @Test
     public void imagesManagedByLombokShouldWork() {

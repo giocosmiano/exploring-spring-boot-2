@@ -9,6 +9,9 @@ pluginManagement {
 // creating multi-module project in gradle/maven
 // see https://github.com/spring-guides/gs-multi-module
 
+// Spring Boot Gradle Plugin Reference Guide
+// https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/
+
 rootProject.name = 'exploring-spring-boot-2'
 
 include 'ch01-quick-start'
