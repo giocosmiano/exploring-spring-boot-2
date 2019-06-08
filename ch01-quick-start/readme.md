@@ -7,7 +7,9 @@
 ### Running `QuickStartApplication` from the command line
 ```
 $ ./gradlew bootRun
-
+```
+ - OR
+```
 $ java -jar ch01-quick-start-0.0.1-SNAPSHOT.jar
 ```
 
