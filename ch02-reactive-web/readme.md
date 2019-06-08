@@ -49,13 +49,16 @@
      
 ### Running `ReactiveWebApplication` from the command line
   - If there are exceptions like the ones below, use the `-Dos.detected.` arguments 
-
+```
+$ ./gradlew bootRun
+```
+ - OR
 ```
 $ java -jar ch02-reactive-web-0.0.1-SNAPSHOT.jar
 $ java -jar ch02-reactive-web-0.0.1-SNAPSHOT.jar -Dos.detected.name=linux -Dos.detected.arch=x86_64 -Dos.detected.classifier=linux-x86_64
 ```
- - [Application's main page](http://localhost:9000/)
- - [Images service to get the files](http://localhost:9000/api/images)
+ - [Application's main page](http://localhost:9002/)
+ - [Images service to get the files](http://localhost:9002/api/images)
 
 ### Further readings
 
