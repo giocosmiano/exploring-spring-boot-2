@@ -163,9 +163,9 @@ $ ./gradlew bootRun
 ```
 $ java -jar ch03-reactive-data-access-0.0.1-SNAPSHOT.jar
 ```
- - [Application's main page](http://localhost:9000/)
- - [Images service to get the files](http://localhost:9000/api/images)
- - [Employees service](http://localhost:9000/api/employees)
+ - [Application's main page](http://localhost:9003/)
+ - [Images service to get the files](http://localhost:9003/api/images)
+ - [Employees service](http://localhost:9003/api/employees)
 
 ### Further readings
 
