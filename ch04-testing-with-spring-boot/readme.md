@@ -7,9 +7,10 @@
    overlooked the fact that some construct in Spring, such as annotations, can trip me up easily and cause a function with
    different outcome. The last time I worked on `server-side MVC` was more than 7yrs ago on a [Grails](https://grails.org/) project.
 
- - The issue, I thought, is that the [Thymeleaf](https://www.thymeleaf.org/) configuration I had was wrong (or perhaps I have some
-   missing property item) that causes `WebFlux` and `Thymeleaf` not working together, thus having the `Controller` to return the
-   name of the `page` as oppose to redirecting to the `page` itself.
+ - The issue, I thought, is that one of the [Thymeleaf](https://www.thymeleaf.org/) configuration I had was wrong (or perhaps I have a
+   missing property item) that causes [WebFlux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux)
+   and [Thymeleaf](https://www.thymeleaf.org) not to work together, thus having the `Controller` to return the name of the `page`
+   as oppose to redirecting to the `page` itself.
    
  - As it turns out, I have the `Controller` annotated with `@RestController` rather than `@Controller`. Bottom line, use
    `@RestController` if running a `client-side MVC` model where `Controller` is just pure `ReST` services (no server-side page
