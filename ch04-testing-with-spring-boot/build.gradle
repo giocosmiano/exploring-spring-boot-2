@@ -66,6 +66,6 @@ dependencies {
 
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 	testCompile 'io.projectreactor:reactor-test'
-//	testCompile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
-//	testCompile 'org.seleniumhq.selenium:selenium-java'
+	testCompile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+	testCompile 'org.seleniumhq.selenium:selenium-java'
 }

@@ -92,6 +92,20 @@ public class ImageControllerTests {
                 .contains("<a href=\"/images/bravo.png/raw\">");
     }
 
+    /*
+     ImageService.findOneImageResource method returns a Mono<Resource>, so we need to assemble
+     a mock resource. That can be achieved using Spring's ByteArrayResource, which takes a
+     byte[], since all Java strings can be turned into byte arrays
+
+     webClient calls GET /images/alpha.png/raw
+
+     exchange() method is made, and we verify the HTTP status is OK
+
+     We check the data content in the body of the HTTP response given that the bytes can be
+     curried back into a Java string
+
+     We use Mockito's verify to make sure our mock was called once and in no other way
+     */
     @Test
     public void fetchingImageShouldWork() {
         given(imageService.findOneImageResource(any()))
@@ -108,6 +122,20 @@ public class ImageControllerTests {
         verifyNoMoreInteractions(imageService);
     }
 
+    /*
+     Mock out the file on the server, which is represented as a Spring Resource and forcing
+     it to throw an IOException when getInputStream is invoked
+
+     webClient is used to make the call
+
+     exchange() method is made, and we verify that the HTTP status is a 400 Bad Request
+
+     check the response body and ensure it matches the expected body from our controller's
+     exception handler
+
+     use Mockito to verify that our mock ImageService.findOneImage() was called once (and only
+     once!) and that no other calls were made to this mock bean
+     */
     @Test
     public void fetchingNullImageShouldFail() throws IOException {
         Resource resource = mock(Resource.class);
@@ -128,6 +156,20 @@ public class ImageControllerTests {
         verifyNoMoreInteractions(imageService);
     }
 
+    /*
+     ImageService mock bean to handle a deleteImage by returning Mono.empty(). This is the way
+     to construct a Mono<Void> object, which represents the promise that our service hands us when
+     deletion of the file and its corresponding MongoDB record are both completed
+
+     webClient performs a DELETE /images/alpha.png
+
+     exchange() is made, and we verify the HTTP status is 303 See Other, the outcome of a Spring
+     WebFlux redirect:/ directive
+
+     As part of the HTTP redirect, there should also be a Location header containing the new URL, /
+
+     We confirm that our ImageService mock bean's deleteImage method was called and nothing else
+     */
     @Test
     public void deleteImageShouldWork() {
         Image alphaImage = new Image("1", "alpha.png");
