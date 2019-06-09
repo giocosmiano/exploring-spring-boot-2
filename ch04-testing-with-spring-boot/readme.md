@@ -12,7 +12,7 @@
    name of the `page` as oppose to redirecting to the `page` itself.
    
  - As it turns out, I have the `Controller` annotated with `@RestController` rather than `@Controller`. Bottom line, use
-   `@RestController` if running a `server-side MVC` model where `Controller` is just pure `ReST` services (no server-side page
+   `@RestController` if running a `client-side MVC` model where `Controller` is just pure `ReST` services (no server-side page
    re-direction or templating engine such as `Thymeleaf`). Otherwise use `@Controller` when both `ReST` and/or server-side
    page re-direction is supported.    
 
