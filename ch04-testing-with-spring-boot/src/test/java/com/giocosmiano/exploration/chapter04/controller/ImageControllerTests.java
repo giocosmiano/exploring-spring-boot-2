@@ -86,16 +86,10 @@ public class ImageControllerTests {
         verify(imageService).findAllImages();
         verifyNoMoreInteractions(imageService);
         assertThat(result.getResponseBody())
-                .contains("index");
-/*
- * What config is needed to test this from IntelliJ ???
- * I tried changing the contextPath, thymeleaf config and both still didn't work
-        assertThat(result.getResponseBody())
                 .contains(
                         "<title>Learning Spring Boot: Spring-a-Gram</title>")
                 .contains("<a href=\"/images/alpha.png/raw\">")
                 .contains("<a href=\"/images/bravo.png/raw\">");
-*/
     }
 
     @Test
@@ -105,12 +99,12 @@ public class ImageControllerTests {
                         new ByteArrayResource("data".getBytes())));
 
         webClient
-                .get().uri("/api/images/alpha.png/raw")
+                .get().uri("/images/alpha.png/raw")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(String.class).isEqualTo("data");
 
-        verify(imageService).findOneImage("alpha.png");
+        verify(imageService).findOneImageResource("alpha.png");
         verifyNoMoreInteractions(imageService);
     }
 
@@ -124,13 +118,13 @@ public class ImageControllerTests {
                 .willReturn(Mono.just(resource));
 
         webClient
-                .get().uri("/api/images/alpha.png/raw")
+                .get().uri("/images/alpha.png/raw")
                 .exchange()
                 .expectStatus().isBadRequest()
                 .expectBody(String.class)
                 .isEqualTo("Couldn't find alpha.png => Bad file");
 
-        verify(imageService).findOneImage("alpha.png");
+        verify(imageService).findOneImageResource("alpha.png");
         verifyNoMoreInteractions(imageService);
     }
 
@@ -140,7 +134,7 @@ public class ImageControllerTests {
         given(imageService.deleteImage(any())).willReturn(Mono.empty());
 
         webClient
-                .delete().uri("/api/images/alpha.png")
+                .delete().uri("/images/alpha.png")
                 .exchange()
                 .expectStatus().isSeeOther()
                 .expectHeader().valueEquals(HttpHeaders.LOCATION, "/");

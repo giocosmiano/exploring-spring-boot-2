@@ -2,21 +2,30 @@ package com.giocosmiano.exploration.chapter04.controller;
 
 import com.giocosmiano.exploration.chapter04.domain.Image;
 import com.giocosmiano.exploration.chapter04.service.ImageService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.codec.multipart.FilePart;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@RestController
+import java.io.IOException;
+
+@Controller
 public class ImageController {
 
     private static final Logger log = LoggerFactory.getLogger(ImageController.class);
 
+    private static final String FILENAME = "{filename:.+}";
+    private static final String BASE_PATH = "/images";
     private static final String API_BASE_PATH = "/api";
     private final ImageService imageService;
 
@@ -25,6 +34,7 @@ public class ImageController {
     }
 
     @GetMapping(API_BASE_PATH + "/images")
+    @ResponseBody
     Flux<Image> images() {
         return Flux.just(
                 new Image("1", "learning-spring-boot-cover.jpg"),
@@ -44,10 +54,42 @@ public class ImageController {
                 .then();
     }
 
-
     @GetMapping("/")
     public Mono<String> index(Model model) {
         model.addAttribute("images", imageService.findAllImages());
-        return Mono.just("index");
+        return Mono.just("index").log("index");
+    }
+
+    @GetMapping(value = BASE_PATH + "/" + FILENAME + "/raw",
+            produces = MediaType.IMAGE_JPEG_VALUE)
+    @ResponseBody
+    public Mono<ResponseEntity<?>> oneRawImage(
+            @PathVariable String filename) {
+        return imageService.findOneImageResource(filename)
+                .map(resource -> {
+                    try {
+                        return ResponseEntity.ok()
+                                .contentLength(resource.contentLength())
+                                .body(new InputStreamResource(
+                                        resource.getInputStream()));
+                    } catch (IOException e) {
+                        return ResponseEntity.badRequest()
+                                .body("Couldn't find " + filename +
+                                        " => " + e.getMessage());
+                    }
+                });
+    }
+
+    @PostMapping(value = BASE_PATH)
+    public Mono<String> createFile(@RequestPart(name = "file")
+                                           Flux<FilePart> files) {
+        return imageService.createImage(files)
+                .then(Mono.just("redirect:/"));
+    }
+
+    @DeleteMapping(BASE_PATH + "/" + FILENAME)
+    public Mono<String> deleteFile(@PathVariable String filename) {
+        return imageService.deleteImage(filename)
+                .then(Mono.just("redirect:/"));
     }
 }

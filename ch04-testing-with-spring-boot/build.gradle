@@ -51,7 +51,7 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-webflux'
 	compile 'org.synchronoss.cloud:nio-multipart-parser'
 
-//	compile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+	compile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 	compile 'org.springframework.boot:spring-boot-starter-actuator'
 
 	compile group: 'io.netty', name: 'netty-transport-native-epoll', version: '4.1.36.Final', classifier: 'linux-x86_64'
@@ -64,8 +64,8 @@ dependencies {
 //    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 //    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.projectreactor:reactor-test'
-	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
-	testImplementation 'org.seleniumhq.selenium:selenium-java'
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
+	testCompile 'io.projectreactor:reactor-test'
+//	testCompile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+//	testCompile 'org.seleniumhq.selenium:selenium-java'
 }
