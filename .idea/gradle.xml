@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/ch02-reactive-web" />
             <option value="$PROJECT_DIR$/ch03-reactive-data-access" />
             <option value="$PROJECT_DIR$/ch04-testing-with-spring-boot" />
+            <option value="$PROJECT_DIR$/ch05-developer-tools-for-spring-boot" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
