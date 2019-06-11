@@ -1,29 +1,47 @@
-### Notes
- - My one take away from this chapter, in addition to exploring testing reactive web and reactive data, is spending a good hour
-   or so troubleshooting in what I thought to be an issue but rather a reminder to myself the difference between `server-side MVC`
-   vs `client-side MVC`. 
-
- - I'm now more accustomed to `client-based MVC` working on [Angular 2/4](https://angular.io/) for the past 3yrs, and I totally
-   overlooked the fact that some construct in Spring, such as annotations, can trip me up easily and cause a function with
-   different outcome. The last time I worked on `server-side MVC` was more than 7yrs ago on a [Grails](https://grails.org/) project.
-
- - The issue, I thought, is that one of the [Thymeleaf](https://www.thymeleaf.org/) configuration I had was wrong (or perhaps I have a
-   missing property item) that causes [WebFlux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux)
-   and [Thymeleaf](https://www.thymeleaf.org) not to work together, thus having the `Controller` to return the name of the `page`
-   as oppose to redirecting to the `page` itself.
+### Spring Boot's ability to detect a change in our code and relaunch the embedded container
+```groovy
+compile 'org.springframework.boot:spring-boot-devtools'
+```
+ - Disables cache settings for auto-configured components
+ 
+ - When it detects a change in code, it restarts the application, holding onto third-party classes and simply throwing away
+   and reloading custom classes
    
- - As it turns out, I have the `Controller` annotated with `@RestController` rather than `@Controller`. Bottom line, use
-   `@RestController` if running a `client-side MVC` model where `Controller` is just pure `ReST` services (no server-side page
-   re-direction or templating engine such as `Thymeleaf`). Otherwise use `@Controller` when both `ReST` and/or server-side
-   page re-direction is supported.    
+ - Activates an embedded [LiveReload](http://livereload.com/) server that can trigger the browser to refresh the page automatically
+ 
+ - Listing of all the disabled components
 
-### Running `TestingWithSpringBootApplication` from the command line
+```java
+properties.put("spring.thymeleaf.cache", "false");
+properties.put("spring.freemarker.cache", "false");
+properties.put("spring.groovy.template.cache", "false");
+properties.put("spring.mustache.cache", "false");
+properties.put("server.session.persistent", "true");
+properties.put("spring.h2.console.enabled", "true");
+properties.put("spring.resources.cache-period", "0");
+properties.put("spring.resources.chain.cache", "false");
+properties.put("spring.template.provider.cache", "false");
+properties.put("spring.mvc.log-resolved-exception", "true");
+properties.put("server.servlet.jsp.init-parameters.development", "true");
+properties.put("spring.reactor.stacktrace-mode.enabled", "true");
+```
+
+ - With the LiveReload server running and a [LiveReload plugin](http://livereload.com/extensions/) installed in the browser,
+   we can enable `LiveReloading` upon visiting the site. Anytime we update the code, the plugin will essentially click the
+   browser's refresh button for us.
+   
+ - `Restarting versus Reloading`: DevTools provides the ability to restart the application quickly, but it is limited in various
+   ways. For example, updating the classpath by adding new dependencies is not picked up. Adding new classes isn't supported.
+   For more sophisticated tools that handle these complex use cases, take a look at something such as
+   [Spring Loaded](https://github.com/spring-projects/spring-loaded ) or [JRebel](https://jrebel.com/software/jrebel/)
+
+### Running `DevToolsForSpringBootApplication` from the command line
 ```
 $ ./gradlew bootRun
 ```
  - OR
 ```
-$ java -jar ch04-testing-with-spring-boot-0.0.1-SNAPSHOT.jar
+$ java -jar ch05-developer-tools-for-spring-boot-0.0.1-SNAPSHOT.jar
 ```
 
 ### Further readings
