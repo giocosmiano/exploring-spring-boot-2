@@ -51,17 +51,15 @@ properties.put("spring.reactor.stacktrace-mode.enabled", "true");
 ```yaml
 # http://localhost:9005/actuator
 management:
-  endpoint:
-    metrics:
-      enabled: true
-
   endpoints:
-    jmx:
-      exposure:
-        include: "*"
+# exposing endpoints over http
     web:
       exposure:
         include: "*"
+# exposing endpoints over jmx
+#    jmx:
+#      exposure:
+#        include: "*"
 ```
 
 ### Running `DevToolsForSpringBootApplication` from the command line

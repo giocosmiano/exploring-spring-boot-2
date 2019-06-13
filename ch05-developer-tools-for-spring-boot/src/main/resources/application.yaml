@@ -37,15 +37,13 @@ spring:
 
 # http://localhost:9005/actuator
 management:
-  endpoint:
-    metrics:
-      enabled: true
-
   endpoints:
-    jmx:
-      exposure:
-        include: "*"
+# exposing endpoints over http
     web:
       exposure:
         include: "*"
+# exposing endpoints over jmx
+#    jmx:
+#      exposure:
+#        include: "*"
 
