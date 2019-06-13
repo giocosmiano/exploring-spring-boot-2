@@ -47,6 +47,23 @@ properties.put("spring.reactor.stacktrace-mode.enabled", "true");
  
  - Launch `org.springframework.boot.devtools.RemoteSpringApplication` configured runner
 
+### Enabling all services from `Actuator`
+```yaml
+# http://localhost:9005/actuator
+management:
+  endpoint:
+    metrics:
+      enabled: true
+
+  endpoints:
+    jmx:
+      exposure:
+        include: "*"
+    web:
+      exposure:
+        include: "*"
+```
+
 ### Running `DevToolsForSpringBootApplication` from the command line
 ```
 $ ./gradlew bootRun
