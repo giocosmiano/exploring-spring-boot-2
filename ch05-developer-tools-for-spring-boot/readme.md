@@ -47,7 +47,7 @@ properties.put("spring.reactor.stacktrace-mode.enabled", "true");
  
  - Launch `org.springframework.boot.devtools.RemoteSpringApplication` configured runner
 
-### Enabling all services from `Actuator`
+### Enabling services from [Actuator](https://spring.io/guides/gs/actuator-service/)
 ```yaml
 # http://localhost:9005/actuator
 management:
