@@ -26,3 +26,26 @@ logging:
 #endpoints.metrics.enabled=true
 #endpoints.mappings.enabled=true
 #endpoints.trace.enabled=true
+
+# To connect IDE to a remotely running application and push code changes over the wire, allowing to automatically make mods and test them immediately
+spring:
+  devtools:
+    remote:
+      secret: ch05-developer-tools-for-spring-boot
+    restart:
+      poll-interval: 4000
+
+# http://localhost:9005/actuator
+management:
+  endpoint:
+    metrics:
+      enabled: true
+
+  endpoints:
+    jmx:
+      exposure:
+        include: "*"
+    web:
+      exposure:
+        include: "*"
+

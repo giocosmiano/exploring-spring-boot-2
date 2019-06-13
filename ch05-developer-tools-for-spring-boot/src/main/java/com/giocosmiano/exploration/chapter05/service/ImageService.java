@@ -2,6 +2,7 @@ package com.giocosmiano.exploration.chapter05.service;
 
 import com.giocosmiano.exploration.chapter05.domain.Image;
 import com.giocosmiano.exploration.chapter05.repository.ImageRepository;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
@@ -26,11 +27,14 @@ public class ImageService {
     private static String UPLOAD_ROOT = "upload-dir";
     private final ResourceLoader resourceLoader;
     private final ImageRepository imageRepository;
+    private final MeterRegistry meterRegistry;
 
     public ImageService(ResourceLoader resourceLoader,
-                        ImageRepository imageRepository) {
+                        ImageRepository imageRepository,
+                        MeterRegistry meterRegistry) {
         this.resourceLoader = resourceLoader;
         this.imageRepository = imageRepository;
+        this.meterRegistry = meterRegistry;
     }
 
     /**
@@ -89,6 +93,15 @@ public class ImageService {
 
      If we wanted a certain order to happen, the best construct would be Mono.then() . We can chain multiple
      then calls together, ensuring that a certain uniform state is achieved at each step before moving forward
+
+     The meterRegistry.summary("files.uploaded.bytes").record(... ), which creates a new distribution summary named
+     files.uploaded.bytes. A distribution summary includes both a name, optional tags, and a value. What is
+     registered is both a value and an occurrence. Each time a meter is added, it counts it, and the running
+     total is tabulated
+
+     Micrometer is a new project at Pivotal. It's a facade for metrics gathering. Think SLF4J, but for metrics
+     instead. It is designed to integrate with lots of metric-gathering systems, including Atlas, Prometheus,
+     Datadog, Influx, Graphite, and more. In this case, it's using a memory-based solution
      */
 
     public Mono<Void> createImage(Flux<FilePart> files) {
@@ -117,8 +130,15 @@ public class ImageService {
                             .flatMap(file::transferTo)
                             .log("createImage-copy");
 
+                    Mono<Void> countFile = Mono.fromRunnable(() -> {
+                        meterRegistry
+                                .summary("files.uploaded.bytes")
+                                .record(Paths.get(UPLOAD_ROOT,
+                                        file.filename()).toFile().length());
+                    });
+
                     // using Mono.when() to combine two separate actions similar to promise.all() in JS
-                    return Mono.when(saveDatabaseImage, copyFile)
+                    return Mono.when(saveDatabaseImage, copyFile, countFile)
                             .log("createImage-when");
                 })
                 .log("createImage-flatMap")

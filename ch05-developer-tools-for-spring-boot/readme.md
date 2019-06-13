@@ -35,6 +35,18 @@ properties.put("spring.reactor.stacktrace-mode.enabled", "true");
    For more sophisticated tools that handle these complex use cases, take a look at something such as
    [Spring Loaded](https://github.com/spring-projects/spring-loaded ) or [JRebel](https://jrebel.com/software/jrebel/)
 
+### Connecting IDE to a remotely running application and push code changes over the wire, allowing to automatically make mods and test them immediately
+
+ - Add `spring.devtools.remote.secret=ch05-developer-tools-for-spring-boot` to `application.properties`
+
+ - Push the application to the cloud (Pivotal Web Services in this case with `cf push learning-spring-boot -p build/libs/ch05-developer-tools-for-spring-boot-0.0.1-SNAPSHOT.jar`)
+ 
+ - Instead of running the app locally in IDE, run Spring Boot's `DevToolsForSpringBootApplication` class instead
+ 
+ - Add `https://ch05-developer-tools-for-spring-boot.cfapps.io` (or whatever the app's remote URL is) as a program argument
+ 
+ - Launch `org.springframework.boot.devtools.RemoteSpringApplication` configured runner
+
 ### Running `DevToolsForSpringBootApplication` from the command line
 ```
 $ ./gradlew bootRun
