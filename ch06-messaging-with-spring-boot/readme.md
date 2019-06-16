@@ -9,6 +9,8 @@ $ java -jar ch06-messaging-with-spring-boot-0.0.1-SNAPSHOT.jar
 
 ### Further readings
 
+ - [Spring AMQP](https://spring.io/projects/spring-amqp)
+
 ### Referenced frameworks/libraries
 
 
