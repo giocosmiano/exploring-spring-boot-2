@@ -87,7 +87,7 @@ $ java -jar ch06-messaging-with-spring-boot-0.0.1-SNAPSHOT.jar
    $ sudo rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
 ```
 
- - Web service should be listening on TCP port `15672`
+ - Web service should be listening on default TCP port `15672`
    - [RabbitMQ Management Console](http://localhost:15672)
 
 ### AMQP fundamentals

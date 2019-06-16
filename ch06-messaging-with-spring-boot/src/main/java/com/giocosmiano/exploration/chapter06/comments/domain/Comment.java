@@ -13,6 +13,8 @@ public class Comment {
     private String imageId;
     private String comment;
 
+    public Comment() {}
+
     public Comment(String id, String imageId, String comment) {
         this.id = id;
         this.imageId = imageId;
