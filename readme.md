@@ -4,6 +4,9 @@
 
 
 ### Further readings
+ - [Spring Boot](https://spring.io/projects/spring-boot)
+ - [Spring Cloud](https://spring.io/projects/spring-cloud)
+ - [Spring Data](https://spring.io/projects/spring-data)
  - [Spring Framework Documentation](https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html)
    - [Core](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#spring-core)
    - [Testing](https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#testing)

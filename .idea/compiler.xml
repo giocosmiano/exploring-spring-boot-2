@@ -5,6 +5,8 @@
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="exploring-spring-boot-2.ch06-rabbitmq-messaging-with-spring-boot.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch06-rabbitmq-messaging-with-spring-boot.test" target="1.8" />
       <module name="exploring-spring-boot.ch01-quick-start.main" target="1.8" />
       <module name="exploring-spring-boot.ch01-quick-start.test" target="1.8" />
     </bytecodeTargetLevel>

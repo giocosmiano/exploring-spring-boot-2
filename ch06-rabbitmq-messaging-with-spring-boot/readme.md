@@ -4,7 +4,7 @@ $ ./gradlew bootRun
 ```
  - OR
 ```
-$ java -jar ch06-messaging-with-spring-boot-0.0.1-SNAPSHOT.jar
+$ java -jar ch06-rabbitmq-messaging-with-spring-boot-0.0.1-SNAPSHOT.jar
 ```
 
 ### Further readings

@@ -6,4 +6,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'ch06-messaging-with-spring-boot'
+rootProject.name = 'ch06-rabbitmq-messaging-with-spring-boot'
