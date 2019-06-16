@@ -62,7 +62,6 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	compile 'org.springframework.boot:spring-boot-devtools'
-	compile 'org.springframework.boot:spring-boot-starter-amqp'
 	
 //    compileOnly "org.projectlombok:lombok:${lombokVersion}"
 //    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
