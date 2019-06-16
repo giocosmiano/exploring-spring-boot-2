@@ -9,7 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 @Component
-public class MessagingWithSpringBootHealthIndicator implements HealthIndicator {
+public class MessagingWithRabbitMQHealthIndicator implements HealthIndicator {
 
 	/*
 	 Implementing the HealthIndicator interface, Spring Boot will include it along with the pre-built
