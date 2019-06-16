@@ -49,6 +49,8 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
 	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	compile 'org.springframework.boot:spring-boot-starter-webflux'
+	compile 'org.springframework.boot:spring-boot-starter-amqp'
+
 	compile 'org.synchronoss.cloud:nio-multipart-parser'
 
 	compile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'

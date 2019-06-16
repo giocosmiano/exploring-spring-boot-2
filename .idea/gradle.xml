@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/ch03-reactive-data-access" />
             <option value="$PROJECT_DIR$/ch04-testing-with-spring-boot" />
             <option value="$PROJECT_DIR$/ch05-developer-tools-for-spring-boot" />
+            <option value="$PROJECT_DIR$/ch06-messaging-with-spring-boot" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
