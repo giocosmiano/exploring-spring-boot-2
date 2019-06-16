@@ -169,6 +169,7 @@ $ java -jar ch03-reactive-data-access-0.0.1-SNAPSHOT.jar
 
 ### Further readings
 
+ - [Spring Data](https://spring.io/projects/spring-data)
  - [ReactiveX](http://reactivex.io/)
  - [Reactive Streams](http://www.reactive-streams.org/)
  - [Project Reactor - Core ibrary that Spring 5 uses for reactive programming model](https://projectreactor.io/)
