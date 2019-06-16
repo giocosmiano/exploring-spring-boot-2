@@ -88,9 +88,7 @@ $ java -jar ch06-messaging-with-spring-boot-0.0.1-SNAPSHOT.jar
 ```
 
  - Web service should be listening on TCP port `15672`
-```
-   http://localhost:15672
-```
+   - [RabbitMQ Management Console](http://localhost:15672)
 
 ### AMQP fundamentals
 
@@ -103,15 +101,14 @@ $ java -jar ch06-messaging-with-spring-boot-0.0.1-SNAPSHOT.jar
    either queues or topics. `AMQP` has `routing keys` that behave differently based on the type of the
    `exchange`
 
- - A `direct exchange` routes messages based on a fixed routing key, often the name of the queue. For
-   example, the last code that we just looked at mentioned `learning-spring-boot` as the name of `exchange` and
-   `comments.new` as the `routing key`. Any consumer that binds their own queue to that `exchange` with a `routing
-   key` of `comments.new` will receive a copy of each message posted earlier
+ - A `direct exchange` routes messages based on a fixed routing key, often the name of the queue.
+   Any consumer that binds their own queue to that `exchange` with a `routing key` will receive a copy
+   of each message posted in that `exchange`
    
- - A `topic exchange` allows routing keys to have wildcards like comments.* . This situation best suits clients
-   where the actual routing key isn't known until a user provides the criteria. For example, imagine a stock-
-   trading application where the user must provide a list of ticker symbols he or she is interested in
-   monitoring
+ - A `topic exchange` allows `routing keys` to have wildcards like `comments.*`. This situation best
+   suits clients where the actual `routing key` isn't known until a user provides the criteria.
+   For example, imagine a stock-trading application where the user must provide a list of ticker
+   symbols he or she is interested in monitoring
    
  - A `fanout exchange` blindly broadcasts every message to every queue that is bound to it, regardless of
    the `routing key`

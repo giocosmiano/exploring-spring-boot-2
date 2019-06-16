@@ -43,7 +43,7 @@ public class ImageService {
      * @return Spring Boot {@link CommandLineRunner} automatically run after app context is loaded.
      */
     @Bean
-    CommandLineRunner setUp() throws IOException {
+    CommandLineRunner setUpImages() throws IOException {
         return (args) -> {
             FileSystemUtils.deleteRecursively(new File(UPLOAD_ROOT));
 

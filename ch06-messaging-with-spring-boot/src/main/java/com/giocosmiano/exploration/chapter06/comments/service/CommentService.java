@@ -2,6 +2,7 @@ package com.giocosmiano.exploration.chapter06.comments.service;
 
 import com.giocosmiano.exploration.chapter06.comments.domain.Comment;
 import com.giocosmiano.exploration.chapter06.comments.repository.CommentWriterRepository;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
@@ -16,9 +17,12 @@ import org.springframework.stereotype.Service;
 public class CommentService {
 
     private CommentWriterRepository repository;
+    private final MeterRegistry meterRegistry;
 
-    public CommentService(CommentWriterRepository repository) {
+    public CommentService(CommentWriterRepository repository,
+                          MeterRegistry meterRegistry) {
         this.repository = repository;
+        this.meterRegistry = meterRegistry;
     }
 
     /*
@@ -36,7 +40,7 @@ public class CommentService {
 
      The method itself invokes our CommentWriterRepository to actually save the comment in the data store
 
-     To use RabbitMQ, we would normally need @EnableRabbit , but thanks to Spring Boot, it's automatically
+     To use RabbitMQ, we would normally need @EnableRabbit, but thanks to Spring Boot, it's automatically
      activated when spring-boot-starter-amqp is on the classpath. Once again, Boot knows what we want and
      just does it
 
@@ -49,6 +53,18 @@ public class CommentService {
      declared the method signature to provide us with a Spring AMQP Message object, we would pull down a
      byte array. However, out of the box, Spring AMQP has limited functionality in serializing custom
      domain objects. With no effort, it can handle simple strings and serializables
+
+     Using the injected MeterRegistry, we increment a comments.consumed metric with every comment
+
+     It's also tagged with the comment's related imageId
+
+     The metrics are handled after the save is completed inside the subscribe method. This method grants
+     us the ability to execute some code once the flow is complete
+
+     Spring AMQP doesn't yet support Reactive Streams. That is why rabbitTemplate.convertAndSend() must
+     be wrapped in Mono.fromRunnable. Blocking calls such as this subscribe() method should be red flags,
+     but in this situation, it's a necessary evil until Spring AMQP is able to add support. There is no
+     other way to signal for this Reactor flow to execute without it
      */
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue,
@@ -59,7 +75,11 @@ public class CommentService {
         repository
                 .save(newComment)
                 .log("commentService-save")
-                .subscribe();
+                .subscribe(comment -> {
+                    meterRegistry
+                            .counter("comments.consumed", "imageId", comment.getImageId())
+                            .increment();
+                });
     }
 
     /*
@@ -81,7 +101,7 @@ public class CommentService {
      @Profile("dev") annotation such that it ONLY runs when spring.profiles.active=dev is present
      */
     @Bean
-    CommandLineRunner setUp(MongoOperations operations) {
+    CommandLineRunner setUpComments(MongoOperations operations) {
         return args -> {
             operations.dropCollection(Comment.class);
         };
