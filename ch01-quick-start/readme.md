@@ -13,6 +13,10 @@ $ ./gradlew bootRun
 $ java -jar ch01-quick-start-0.0.1-SNAPSHOT.jar
 ```
 
+### Further readings
+
+ - [Spring Boot](https://spring.io/projects/spring-boot)
+
 
 ### Referenced frameworks/libraries
  - [Reactive Web (embedded Netty + Spring WebFlux)](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html)
