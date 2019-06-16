@@ -1,4 +1,4 @@
-### Running `DevToolsForSpringBootApplication` from the command line
+### Running `MessagingWithRabbitMQApplication` from the command line
 ```
 $ ./gradlew bootRun
 ```

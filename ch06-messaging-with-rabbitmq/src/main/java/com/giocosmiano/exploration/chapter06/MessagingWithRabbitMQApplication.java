@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.reactive.HiddenHttpMethodFilter;
 
 @SpringBootApplication
-public class MessagingWithSpringBootApplication {
+public class MessagingWithRabbitMQApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MessagingWithSpringBootApplication.class, args);
+		SpringApplication.run(MessagingWithRabbitMQApplication.class, args);
 	}
 
 	@Bean
