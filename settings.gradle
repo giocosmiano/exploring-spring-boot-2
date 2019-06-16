@@ -19,5 +19,5 @@ include 'ch02-reactive-web'
 include 'ch03-reactive-data-access'
 include 'ch04-testing-with-spring-boot'
 include 'ch05-developer-tools-for-spring-boot'
-include 'ch06-rabbitmq-messaging-with-spring-boot'
+include 'ch06-messaging-with-rabbitmq'
 
