@@ -26,13 +26,13 @@ public class MessagingWithSpringBootHealthIndicator implements HealthIndicator {
 	 Finally, if any other exceptions occur, we will also get a Health status code of DOWN but with the
 	 information from the exception instead of a commonly coded error path
 
-	 http://localhost:9005/actuator/health
+	 http://localhost:9006/actuator/health
 	 */
 	@Override
 	public Health health() {
 		try {
 			URL url =
-					new URL("http://localhost:9005/");
+					new URL("http://localhost:9006/");
 							HttpURLConnection conn =
 							(HttpURLConnection) url.openConnection();
 			int statusCode = conn.getResponseCode();
