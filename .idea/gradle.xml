@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/ch04-testing-with-spring-boot" />
             <option value="$PROJECT_DIR$/ch05-developer-tools-for-spring-boot" />
             <option value="$PROJECT_DIR$/ch06-messaging-with-rabbitmq" />
+            <option value="$PROJECT_DIR$/ch06-spring-cloud-stream-with-rabbitmq" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
