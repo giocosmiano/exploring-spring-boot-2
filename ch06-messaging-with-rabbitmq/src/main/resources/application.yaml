@@ -9,7 +9,8 @@ logging:
       core: TRACE
       util: TRACE
     org:
-      springframework.data: TRACE
+      springframework:
+        data: TRACE
     io:
       netty: DEBUG
       reactor: DEBUG
@@ -35,7 +36,7 @@ spring:
     restart:
       poll-interval: 4000
 
-# http://localhost:9005/actuator
+# http://localhost:9006/actuator
 management:
   endpoints:
 # exposing endpoints over http
