@@ -21,4 +21,5 @@ include 'ch04-testing-with-spring-boot'
 include 'ch05-developer-tools-for-spring-boot'
 include 'ch06-messaging-with-rabbitmq'
 include 'ch06-spring-cloud-stream-with-rabbitmq'
+include 'ch07-micro-service-discovery-service'
 
