@@ -10,7 +10,9 @@ $ java -jar ch06-spring-cloud-stream-with-rabbitmq-0.0.1-SNAPSHOT.jar
 ### Further readings
 
  - [Spring Cloud Stream](https://spring.io/projects/spring-cloud-stream)
+   - [Spring Cloud Stream Reference Guide](https://docs.spring.io/spring-cloud-stream/docs/Elmhurst.SR3/reference/htmlsingle/)
  - [Spring AMQP](https://spring.io/projects/spring-amqp)
+   - [Spring AMQP Reference Guide](https://docs.spring.io/spring-amqp/docs/2.1.7.RELEASE/reference/html/)
  - [Spring Cloud Stream uses Esoteric Software's Kryo library for serialization/deserialization](https://github.com/EsotericSoftware/kryo)
 
 ### Referenced frameworks/libraries
