@@ -11,9 +11,9 @@ buildscript {
     }
     ext {
         lombokVersion = '1.18.8'
-		springBootVersion = '2.0.0.M5'
-		springCloudVersion = 'Finchley.M3'
-		springCloudStreamVersion = 'Elmhurst.M2'
+		springBootVersion = '2.0.0.RELEASE'
+		springCloudVersion = 'Finchley.M9'
+		springCloudStreamVersion = 'Elmhurst.SR1'
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}" 
@@ -41,6 +41,7 @@ apply plugin: 'idea'
 group = 'com.giocosmiano.exploration.chapter06'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 configurations {
 	compileOnly {
