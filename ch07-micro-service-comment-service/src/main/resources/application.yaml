@@ -2,6 +2,11 @@
 server:
   port: 9071
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
 # Customize log levels
 logging:
   level:
@@ -58,12 +63,11 @@ spring:
     stream:
       bindings:
         input:
-          destination: learning-spring-boot-comments
-          group: learning-spring-boot
+          destination: learning-spring-boot
+          group: comments
           content-type: application/json
         output:
-          destination: learning-spring-boot-comments
-          group: learning-spring-boot
+          destination: learning-spring-boot
 
 # http://localhost:9071/actuator
 management:
