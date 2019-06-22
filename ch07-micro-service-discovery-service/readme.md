@@ -6,6 +6,9 @@ $ ./gradlew bootRun
 ```
 $ java -jar ch07-micro-service-discovery-service-0.0.1-SNAPSHOT.jar
 ```
+
+ - [Actuator](http://localhost:8761/actuator)
+
 ### Dynamically registering and finding services with Eureka
 
  - [Netflix Eureka](https://github.com/Netflix/eureka) provides the means for micro services to power up,
