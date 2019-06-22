@@ -7,6 +7,7 @@ $ ./gradlew bootRun
 $ java -jar ch06-messaging-with-rabbitmq-0.0.1-SNAPSHOT.jar
 ```
 
+ - [Application](http://localhost:9006)
  - [Actuator](http://localhost:9006/actuator)
 
 ### Further readings
