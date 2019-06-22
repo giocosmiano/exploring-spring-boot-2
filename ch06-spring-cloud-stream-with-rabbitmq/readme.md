@@ -7,6 +7,8 @@ $ ./gradlew bootRun
 $ java -jar ch06-spring-cloud-stream-with-rabbitmq-0.0.1-SNAPSHOT.jar
 ```
 
+ - [Actuator](http://localhost:9006/actuator)
+
 ### Further readings
 
  - [Spring Cloud Stream](https://spring.io/projects/spring-cloud-stream)
