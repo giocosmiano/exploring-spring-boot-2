@@ -12,8 +12,8 @@ buildscript {
 		maven { url "https://repo.spring.io/milestone" }
     }
     ext {
-		springBootVersion = '2.1.5.RELEASE'
-		springCloudVersion = 'Greenwich.SR1'
+		springBootVersion = '2.0.0.RELEASE'
+		springCloudVersion = 'Finchley.M9'
     }
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}" 
@@ -21,7 +21,7 @@ buildscript {
 }
 
 plugins {
-	id 'org.springframework.boot' version '2.1.5.RELEASE'
+	id 'org.springframework.boot' version '2.0.0.RELEASE'
 	id 'java'
 }
 
@@ -41,6 +41,8 @@ repositories {
 
 dependencies {
 	compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'org.springframework.cloud:spring-cloud-starter-sleuth'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 

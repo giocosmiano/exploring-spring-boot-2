@@ -21,12 +21,27 @@ eureka:
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 
+# Customize log levels
+logging:
+  level:
+    reactor:
+      core: TRACE
+      util: TRACE
+    org:
+      springframework:
+        data: TRACE
+        cloud: DEBUG
+        integration: DEBUG
+    io:
+      netty: DEBUG
+      reactor: DEBUG
+
 #
 #  To run things in a more resilient mode, we could run two instances, each with a different Spring profile
 #  ( peer1 and peer2 ) with the following configuration
 #
 #  spring.profiles, in a YAML file with the triple-dash separators, lets us put multiple profiles in the same
-#  application.yml configuration file. To launch an application with a given profile, we merely need to run it
+#  application.yaml configuration file. To launch an application with a given profile, we merely need to run it
 #  with spring.profiles.active=peer1 or SPRING_PROFILES_ACTIVE=peer1. As stated, this configuration file has two
 #  profiles, peer1 and peer2
 #
