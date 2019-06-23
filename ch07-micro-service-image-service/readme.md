@@ -1,14 +1,14 @@
-### Running `SpringCloudCommentApplication` from the command line
+### Running `SpringCloudImageApplication` from the command line
 ```
 $ ./gradlew bootRun
 ```
  - OR
 ```
-$ java -jar ch07-micro-service-comment-service-0.0.1-SNAPSHOT.jar
+$ java -jar ch07-micro-service-image-service-0.0.1-SNAPSHOT.jar
 ```
 
- - [Application](http://localhost:9072/)
- - [Actuator](http://localhost:9072/actuator)
+ - [Application](http://localhost:9071/)
+ - [Actuator](http://localhost:9071/actuator)
 
 ### Further readings
 
