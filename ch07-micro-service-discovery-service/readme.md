@@ -7,8 +7,8 @@ $ ./gradlew bootRun
 $ java -jar ch07-micro-service-discovery-service-0.0.1-SNAPSHOT.jar
 ```
 
- - [Eureka](http://localhost:9071/)
- - [Actuator](http://localhost:9071/actuator) 
+ - [Eureka](http://localhost:9070/)
+ - [Actuator](http://localhost:9070/actuator) 
 
 ### Dynamically registering and finding services with Eureka
 
