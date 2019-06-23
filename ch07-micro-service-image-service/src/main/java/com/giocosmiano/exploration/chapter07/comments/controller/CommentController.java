@@ -64,7 +64,8 @@ public class CommentController {
      */
     public CommentController(MeterRegistry meterRegistry) {
         this.meterRegistry = meterRegistry;
-        this.flux = Flux.<Message<Comment>>create(emitter -> this.commentSink = emitter,
+        this.flux = Flux.<Message<Comment>>
+                create(emitter -> this.commentSink = emitter,
                 FluxSink.OverflowStrategy.IGNORE)
                 .publish()
                 .autoConnect();
@@ -93,7 +94,8 @@ public class CommentController {
     }
 
     @StreamEmitter
-    public void emit(@Output(Source.OUTPUT) FluxSender output) {
+    @Output(Source.OUTPUT)
+    public void emit(FluxSender output) {
         output.send(this.flux);
     }
 }

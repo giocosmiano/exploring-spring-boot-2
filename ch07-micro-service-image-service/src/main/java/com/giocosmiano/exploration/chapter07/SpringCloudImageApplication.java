@@ -2,6 +2,8 @@ package com.giocosmiano.exploration.chapter07;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.filter.reactive.HiddenHttpMethodFilter;
 
 @SpringCloudApplication
 public class SpringCloudImageApplication {
@@ -23,4 +25,17 @@ public class SpringCloudImageApplication {
         SpringApplication.run(
                 SpringCloudImageApplication.class);
     }
+
+    @Bean
+    HiddenHttpMethodFilter hiddenHttpMethodFilter() {
+        return new HiddenHttpMethodFilter();
+    }
+
+	/*
+	 HiddenHttpMethodFilter Spring bean to make the HTTP DELETE methods work properly
+	 DELETE is not a valid action for an HTML5 FORM, so Thymeleaf creates a hidden input field
+	 containing our desired verb while the enclosing form uses an HTML5 POST . This gets
+	 transformed by Spring during the web call, resulting in the @DeleteMapping method being
+	 properly invoked with no effort on our end.
+	 */
 }
