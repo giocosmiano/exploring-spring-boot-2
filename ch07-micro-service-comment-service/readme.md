@@ -7,7 +7,7 @@ $ ./gradlew bootRun
 $ java -jar ch07-micro-service-comment-service-0.0.1-SNAPSHOT.jar
 ```
 
- - [Actuator](http://localhost:9072/actuator)
+ - [Actuator](http://localhost:9071/actuator)
 
 ### Further readings
 

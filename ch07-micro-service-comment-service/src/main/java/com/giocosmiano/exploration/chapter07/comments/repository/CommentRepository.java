@@ -5,7 +5,7 @@ import org.springframework.data.repository.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public interface CommentWriterRepository
+public interface CommentRepository
         extends Repository<Comment, String> {
 
     /*
@@ -23,6 +23,8 @@ public interface CommentWriterRepository
      This repository is focused on writing data into MongoDB and nothing more. Even though it has a
      findOne(), it's not built for reading data
      */
+    Flux<Comment> findByImageId(String imageId);
+
     Flux<Comment> saveAll(Flux<Comment> newComment);
 
     Mono<Comment> save(Comment newComment);

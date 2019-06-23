@@ -2,7 +2,7 @@ package com.giocosmiano.exploration.chapter07.comments.service;
 
 import com.giocosmiano.exploration.chapter07.comments.domain.Comment;
 import com.giocosmiano.exploration.chapter07.comments.processor.CustomProcessor;
-import com.giocosmiano.exploration.chapter07.comments.repository.CommentWriterRepository;
+import com.giocosmiano.exploration.chapter07.comments.repository.CommentRepository;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -26,10 +26,10 @@ public class CommentService {
      code a custom set of channels
      */
 
-    private CommentWriterRepository repository;
+    private CommentRepository repository;
     private final MeterRegistry meterRegistry;
 
-    public CommentService(CommentWriterRepository repository,
+    public CommentService(CommentRepository repository,
                           MeterRegistry meterRegistry) {
         this.repository = repository;
         this.meterRegistry = meterRegistry;
@@ -78,9 +78,9 @@ public class CommentService {
      @Profile("dev") annotation such that it ONLY runs when spring.profiles.active=dev is present
      */
     @Bean
-    CommandLineRunner setUpComments(MongoOperations operations) {
+    CommandLineRunner setUpComments(CommentRepository repository) {
         return args -> {
-            operations.dropCollection(Comment.class);
+            repository.deleteAll().subscribe();
         };
     }
 }
