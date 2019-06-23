@@ -5,6 +5,20 @@ import org.springframework.cloud.client.SpringCloudApplication;
 
 @SpringCloudApplication
 public class SpringCloudCommentApplication {
+
+    /*
+     @SpringCloudApplication replaces the previous @SpringBootApplication . This new annotation extends
+     @SpringBootApplication , giving us the same auto-configuration, component scanning, and property
+     support (among other things) that we have come to love. Additionally, it adds @EnableDiscoveryClient
+     to register with Eureka and @EnableCircuitBreaker so we can create fallback commands if a remote
+     service is down
+
+     There are both @EnableEurekaClient and @EnableDiscoveryClient annotations available.
+     DiscoveryClient is the abstract interface that Spring Cloud Netflix puts above EurekaClient in
+     the event that future service registry tools are built. At this point in time, there is little
+     difference in our code, except the convenient usage of a single
+     annotation, @SpringCloudApplication, to turn our component into a micro service
+     */
     public static void main(String[] args) {
         SpringApplication.run(
                 SpringCloudCommentApplication.class);
