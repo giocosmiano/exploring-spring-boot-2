@@ -66,7 +66,11 @@ dependencies {
 	compile 'org.springframework.cloud:spring-cloud-stream-reactive'
 	compile 'org.synchronoss.cloud:nio-multipart-parser'
 
+//	spring-cloud-starter-netflix-eureka-client is the dependency needed to register our microservice as a Eureka client.
+//	It brings in several transitive dependencies, the most important one for this section being Ribbon
 	compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+//	spring-cloud-starter-hystrix is the dependency for the circuit-breaker pattern
 	compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
 
 	compile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
@@ -77,7 +81,8 @@ dependencies {
 	compile 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	compile 'org.springframework.boot:spring-boot-devtools'
+//	temporarily disabled to remove noise
+//	compile 'org.springframework.boot:spring-boot-devtools'
 
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 	testCompile 'io.projectreactor:reactor-test'

@@ -21,6 +21,32 @@ public class CommentHelper {
 		this.restTemplate = restTemplate;
 	}
 
+	/*
+	 restTemplate.exchange() is the generic method for making remote calls. There are shortcuts such as
+	 getForObject() and getForEntity() , but when dealing with generics (such as List<Comment> ), we need to
+	 switch to exchange()
+
+	 First argument is the URL to the comments service that we just picked. It has the port number we
+	 selected along with the route ( /comments/{imageId} , a template) where we can serve up a list of
+	 comments based on the image's ID
+
+	 Second argument is the HTTP verb we wish to use-- GET
+
+	 Third argument is for headers and any body. Since this is a GET , there are none
+
+	 Fourth argument is the return type of the data. Due to limitations of Java's generics and type
+	 erasure, we have created a dedicated anonymous class to capture the type details for List<Comment> ,
+	 which Spring can use to interact with Jackson to properly deserialize
+
+	 Final argument is the parameter ( image.getId() ) that will be used to expand our URI template's
+	 {imageId} field
+
+	 Since exchange() returns a Spring ResponseEntity<T> , we need to invoke the body() method to extract the
+	 response body
+
+	 The URL has been revamped into http://COMMENTS/comments/{imageId}. COMMENTS is the logical name that our
+	 comments micro service registered itself with in Eureka
+	 */
 	@HystrixCommand(fallbackMethod = "defaultComments")
 	public List<Comment> getComments(Image image) {
 		return restTemplate.exchange(
