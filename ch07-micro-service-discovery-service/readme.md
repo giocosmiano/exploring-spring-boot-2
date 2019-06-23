@@ -1,4 +1,4 @@
-### Running `SpringBootEurekaServerApplication` from the command line
+### Running `SpringCloudEurekaServerApplication` from the command line
 ```
 $ ./gradlew bootRun
 ```
@@ -7,7 +7,8 @@ $ ./gradlew bootRun
 $ java -jar ch07-micro-service-discovery-service-0.0.1-SNAPSHOT.jar
 ```
 
- - [Actuator](http://localhost:8761/actuator) 
+ - [Eureka](http://localhost:9071/)
+ - [Actuator](http://localhost:9071/actuator) 
 
 ### Dynamically registering and finding services with Eureka
 
