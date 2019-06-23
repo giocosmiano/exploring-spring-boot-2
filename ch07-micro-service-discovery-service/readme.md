@@ -20,6 +20,8 @@ $ java -jar ch07-micro-service-discovery-service-0.0.1-SNAPSHOT.jar
 ### Further readings
 
  - [Spring Cloud](https://spring.io/projects/spring-cloud)
+   - [Spring Cloud Reference Guide v.Finchley.SR3](https://cloud.spring.io/spring-cloud-static/Finchley.SR3/single/spring-cloud.html)
+   - [Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html)
 
 ### Referenced frameworks/libraries
 
