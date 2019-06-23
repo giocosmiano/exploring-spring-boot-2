@@ -7,8 +7,8 @@ $ ./gradlew bootRun
 $ java -jar ch07-micro-service-image-service-0.0.1-SNAPSHOT.jar
 ```
 
- - [Application](http://localhost:9071/)
- - [Actuator](http://localhost:9071/actuator)
+ - [Application](http://localhost:9072/)
+ - [Actuator](http://localhost:9072/actuator)
 
 ### Further readings
 

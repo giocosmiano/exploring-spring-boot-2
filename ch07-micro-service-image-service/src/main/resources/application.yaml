@@ -1,6 +1,6 @@
 # Override the port Tomcat listens on
 server:
-  port: 9071
+  port: 9072
 
 eureka:
   client:
@@ -69,7 +69,7 @@ spring:
         output:
           destination: learning-spring-boot
 
-# http://localhost:9071/actuator
+# http://localhost:9072/actuator
 management:
   endpoints:
 # exposing endpoints over http

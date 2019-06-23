@@ -1,6 +1,6 @@
 package com.giocosmiano.exploration.chapter07;
 
-import com.giocosmiano.exploration.chapter07.comments.repository.CommentReaderRepository;
+import com.giocosmiano.exploration.chapter07.comments.helper.CommentHelper;
 import com.giocosmiano.exploration.chapter07.images.domain.Image;
 import com.giocosmiano.exploration.chapter07.images.service.ImageService;
 import org.slf4j.Logger;
@@ -28,12 +28,12 @@ public class HomeController {
     private static final String API_BASE_PATH = "/api";
 
     private final ImageService imageService;
-    private final CommentReaderRepository repository;
+    private final CommentHelper commentHelper;
 
     public HomeController(ImageService imageService,
-                          CommentReaderRepository repository) {
+                          CommentHelper commentHelper) {
         this.imageService = imageService;
-        this.repository = repository;
+        this.commentHelper = commentHelper;
     }
 
     @GetMapping(API_BASE_PATH + "/images")
@@ -94,16 +94,11 @@ public class HomeController {
         model.addAttribute("images",
                 imageService
                         .findAllImages()
-                        .flatMap(image ->
-                                Mono.just(image)
-                                        .zipWith(repository.findByImageId(
-                                                image.getId()).collectList()))
-                        .map(imageAndComments ->
+                        .map(image ->
                                 new HashMap<String, Object>(){{
-                                    put("id", imageAndComments.getT1().getId());
-                                    put("name", imageAndComments.getT1().getName());
-                                    put("comments",
-                                            imageAndComments.getT2());
+                                    put("id", image.getId());
+                                    put("name", image.getName());
+                                    put("comments", commentHelper.getComments(image));
                                 }})
         );
 
