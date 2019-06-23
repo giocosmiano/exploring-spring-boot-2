@@ -1,6 +1,6 @@
 #
 #  For a standalone Eureka Server, we have to configure it with a eureka.instance.hostname and a
-#  eureka.client.serviceUrl.defaultZone setting. This resolves to http://localhost:8761/eureka , the URI for this
+#  eureka.client.serviceUrl.defaultZone setting. This resolves to http://localhost:9071/eureka, the URI for this
 #  standalone version of Eureka. For a multi-node Eureka Server configuration, we would alter this
 #  configuration
 #
@@ -10,7 +10,7 @@
 #  via eureka.client.registerWithEureka=false and eureka.client.fetchRegistry=false
 #
 server:
-  port: 8761
+  port: 9071
 
 eureka:
   instance:
