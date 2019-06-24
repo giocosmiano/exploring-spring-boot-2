@@ -1,0 +1,15 @@
+# Override the default port 7979 of hystrix dashboard
+server:
+  port: 9079
+
+spring:
+  application:
+    name: hystrix-dashboard
+
+
+
+
+
+
+
+

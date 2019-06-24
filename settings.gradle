@@ -24,4 +24,5 @@ include 'ch06-spring-cloud-stream-with-rabbitmq'
 include 'ch07-micro-service-discovery-service'
 include 'ch07-micro-service-comment-service'
 include 'ch07-micro-service-image-service'
+include 'ch07-micro-service-hystrix-dashboard'
 
