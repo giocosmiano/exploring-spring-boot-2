@@ -46,6 +46,21 @@ public class CommentHelper {
 
 	 The URL has been revamped into http://COMMENTS/comments/{imageId}. COMMENTS is the logical name that our
 	 comments micro service registered itself with in Eureka
+
+	 Hystrix commands operate using Spring AOP (Aspect Oriented Programming). The standard
+	 approach is through Java proxies (as opposed to AspectJ weaving, which requires extra setup). A well-
+	 known issue with proxies is that in-class invocations don't trigger the enclosing advice. Hence, the
+	 Hystrix command method must be put inside another Spring bean, and injected into our controller
+
+	 There is some classic advice to offer when talking about Hystrix's AOP advice--be careful
+	 about using thread locals. However, the recommendation against thread locals is even
+	 stronger when we are talking about Reactor-powered applications, the basis for this entire
+	 book. That's because Project Reactor uses work stealing, a well-documented concept that
+	 involves different threads pulling work down when idle. Reactor's scheduler is thread
+	 agnostic, which means that we don't know where the work is actually being carried out. So
+	 don't use thread locals when writing Reactor applications. This impacts other areas too
+	 such as Spring Security, which uses thread locals to maintain contextual security status
+	 with SecurityContextHolder
 	 */
 	@HystrixCommand(fallbackMethod = "defaultComments")
 	public List<Comment> getComments(Image image) {
