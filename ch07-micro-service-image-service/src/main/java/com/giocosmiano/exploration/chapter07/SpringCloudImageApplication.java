@@ -20,6 +20,9 @@ public class SpringCloudImageApplication {
      the event that future service registry tools are built. At this point in time, there is little
      difference in our code, except the convenient usage of a single
      annotation, @SpringCloudApplication, to turn our component into a micro service
+
+     Since this micro-service has @EnableCircuitBreaker (pulled in via @SpringCloudApplication), the
+     /hystrix.stream endpoint can be entered in the Hystrix Dashboard outputting circuit metrics
      */
     public static void main(String[] args) {
         SpringApplication.run(

@@ -33,6 +33,23 @@ public class CommentSimulator {
 		this.counter = new AtomicInteger(1);
 	}
 
+	/*
+	 @Profile annotation indicates that this component is only active when
+	 spring.profiles.active=simulator is set in the environment variables
+
+	 simulateActivity() is triggered when Spring Boot generates an ApplicationReadyEvent
+
+	 Flux generates a tick every 1000 ms. This tick is transformed into a request for all images, and
+	 then a new comment is created against each one, simulating user activity
+
+	 simulateUsersClicking() is also triggered by the same ApplicationReadyEvent. It has a different
+	 Flux that simulates a user loading the home page every 500 ms
+
+	 In both of these simulation flows, the downstream activity needs to be wrapped in a Mono.defer
+	 in order to provide a target Mono for the downstream provider to subscribe to
+
+	 Both of these Reactor flows must be subscribed to, or they will never run
+	 */
 	@EventListener
 	public void simulateComments(ApplicationReadyEvent event) {
 		Flux
