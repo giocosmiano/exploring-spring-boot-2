@@ -1,7 +1,5 @@
-### Exploration from
+## [Exploring Spring Boot 2.0](https://www.packtpub.com/application-development/learning-spring-boot-20-second-edition)
  
-[![Spring Boot 2.0](./learning-spring-boot-2.jpeg)](https://www.packtpub.com/application-development/learning-spring-boot-20-second-edition)
-
 
 ### Further readings
  - [Spring Boot](https://spring.io/projects/spring-boot)
