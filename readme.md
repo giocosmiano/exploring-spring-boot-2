@@ -4,8 +4,11 @@
 ### Further readings
  - [Spring Boot](https://spring.io/projects/spring-boot)
  - [Spring Cloud](https://spring.io/projects/spring-cloud)
+   - [Spring Cloud Reference Guide v.Finchley.SR3](https://cloud.spring.io/spring-cloud-static/Finchley.SR3/single/spring-cloud.html)
+   - [Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html)
+   - [Spring Cloud Netflix v2.1.2.RELEASE](https://cloud.spring.io/spring-cloud-static/spring-cloud-netflix/2.1.2.RELEASE/single/spring-cloud-netflix.html)
  - [Spring Data](https://spring.io/projects/spring-data)
- - [Spring Framework Documentation](https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html)
+ - [Spring Framework v.5.x](https://docs.spring.io/spring/docs/current/spring-framework-reference/index.html)
    - [Core](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#spring-core)
    - [Testing](https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#testing)
    - [Data Access](https://docs.spring.io/spring/docs/current/spring-framework-reference/data-access.html#spring-data-tier)

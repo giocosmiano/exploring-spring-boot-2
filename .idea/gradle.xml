@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/ch06-messaging-with-rabbitmq" />
             <option value="$PROJECT_DIR$/ch06-spring-cloud-stream-with-rabbitmq" />
             <option value="$PROJECT_DIR$/ch07-micro-service-comment-service" />
+            <option value="$PROJECT_DIR$/ch07-micro-service-config-service" />
             <option value="$PROJECT_DIR$/ch07-micro-service-discovery-service" />
             <option value="$PROJECT_DIR$/ch07-micro-service-hystrix-dashboard" />
             <option value="$PROJECT_DIR$/ch07-micro-service-image-service" />
