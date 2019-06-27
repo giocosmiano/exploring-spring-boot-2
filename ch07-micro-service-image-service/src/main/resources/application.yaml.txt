@@ -73,7 +73,7 @@ spring:
           destination: learning-spring-boot
         output:
           destination: learning-spring-boot
-          group: comments
+          group: comment-service
           content-type: application/json
 
 # http://localhost:9072/actuator
