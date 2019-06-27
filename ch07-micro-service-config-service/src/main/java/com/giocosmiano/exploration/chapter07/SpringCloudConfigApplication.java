@@ -9,10 +9,23 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 public class SpringCloudConfigApplication {
 
     /*
-     @SpringBootApplication declares this to be a Spring Boot application. We don't need, because
-     we don't intend to hook into Eureka, nor institute any circuit @SpringCloudApplication breakers
+     dependencies {
+        compile 'org.springframework.cloud:spring-cloud-config-server'
+     }
 
-     @EnableHystrixDashboard will start up a UI
+     dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+     }
+
+     spring-cloud-config-server is only needed to run a config server, not a config server client
+
+     @SpringBootApplication marks this as a Spring Boot application. Since this is the cornerstone of the
+     rest of our micro services (including Eureka), it doesn't use Eureka
+
+     @EnableConfigServer launches an embedded Spring Cloud Config Server, full of options. We'll use the
+     defaults as much as possible
      */
     public static void main(String[] args) {
         new SpringApplicationBuilder(SpringCloudConfigApplication.class).run(args);
