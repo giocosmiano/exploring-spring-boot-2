@@ -1,10 +1,15 @@
-# Override the default port 7979 of hystrix dashboard
-server:
-  port: 9079
+#
+# See config for details
+# https://github.com/giocosmiano/exploring-spring-boot-2/blob/master/ch07-micro-service-config-repo/src/main/resources/hystrix-dashboard.yaml
+#
 
 spring:
   application:
     name: hystrix-dashboard
+
+# Override the default port 7979 of hystrix dashboard
+# server:
+#   port: 9079
 
 
 
