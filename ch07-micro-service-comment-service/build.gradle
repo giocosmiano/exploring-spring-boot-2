@@ -73,6 +73,9 @@ dependencies {
 //	spring-cloud-starter-hystrix is the dependency for the circuit-breaker pattern
 	compile 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
 
+//	To make our micro service talk to a Config Server
+	compile 'org.springframework.cloud:spring-cloud-starter-config'
+
 	compile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 	compile 'org.springframework.boot:spring-boot-starter-actuator'
 

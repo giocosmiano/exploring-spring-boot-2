@@ -1,0 +1,9 @@
+#
+# See config for details
+# https://github.com/giocosmiano/exploring-spring-boot-2/blob/master/ch07-micro-service-config-repo/src/main/resources/comment-service.yaml
+#
+spring:
+  application:
+    name: comment-service
+
+
