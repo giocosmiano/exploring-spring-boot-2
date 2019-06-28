@@ -8,6 +8,7 @@ $ java -jar ch07-micro-service-hystrix-dashboard-0.0.1-SNAPSHOT.jar
 ```
 
  - [Hystrix Dashboard](http://localhost:9079/hystrix)
+ - [Spring Cloud Config for Hystrix Dashboard](http://localhost:9078/hystrix-dashboard/default) 
  
  - Since each micro service that has `@EnableCircuitBreaker` (pulled in via @SpringCloudApplication) has a
    `/hystrix.stream` endpoint outputting circuit metrics, we can enter that service's URL
