@@ -8,7 +8,8 @@ $ java -jar ch07-micro-service-discovery-service-0.0.1-SNAPSHOT.jar
 ```
 
  - [Eureka](http://localhost:9070/)
- - [Actuator](http://localhost:9070/actuator) 
+ - [Actuator](http://localhost:9070/actuator)
+ - [Spring Cloud Config for Eureka Discovery/Registry Service](http://localhost:9078/discovery-service/default) 
 
 ### Dynamically registering and finding services with Eureka
 
