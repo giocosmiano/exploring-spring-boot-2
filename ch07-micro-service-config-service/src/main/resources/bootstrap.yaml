@@ -8,8 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/giocosmiano/exploring-spring-boot-2
-          basedir: tree/master/ch07-micro-service-config-repo/src/main/resources
+          uri: https://github.com/giocosmiano/exploring-spring-boot-2-config-repo.git
 
 
 
