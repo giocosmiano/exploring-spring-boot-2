@@ -1,6 +1,7 @@
-# Override the default port 7979 of hystrix dashboard
+# Override the default port 8888 of config server
 server:
   port: 9078
+#  port: 8888
 
 spring:
   cloud:
@@ -9,7 +10,6 @@ spring:
         git:
           uri: https://github.com/giocosmiano/exploring-spring-boot-2
           basedir: tree/master/ch07-micro-service-config-repo/src/main/resources
-#          basedir: tree/master/ch07-micro-service-config-repo/src/main/resources
 
 
 
