@@ -8,6 +8,7 @@ $ java -jar ch07-micro-service-comment-service-0.0.1-SNAPSHOT.jar
 ```
 
  - [Actuator](http://localhost:9071/actuator)
+ - [Spring Cloud Config for Comment Service](http://localhost:9078/comment-service/default) 
 
 ### Note on RabbitMQ
  - Normally, when using RabbitMQ, each instance of comments will register its own queue, and
