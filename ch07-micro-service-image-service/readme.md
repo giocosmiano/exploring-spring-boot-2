@@ -9,6 +9,7 @@ $ java -jar ch07-micro-service-image-service-0.0.1-SNAPSHOT.jar
 
  - [Application](http://localhost:9072/)
  - [Actuator](http://localhost:9072/actuator)
+ - [Spring Cloud Config for Image Service](http://localhost:9078/image-service/default) 
 
 ### Note on RabbitMQ
  - Normally, when using RabbitMQ, each instance of comments will register its own queue, and

@@ -2,8 +2,17 @@
 # See config for details
 # https://github.com/giocosmiano/exploring-spring-boot-2/blob/master/ch07-micro-service-config-repo/src/main/resources/image-service.yaml
 #
+
+# Override the default port 8888 of spring cloud config server
+configServerHost: localhost
+configServerPort: 9078
+
 spring:
   application:
     name: image-service
+  cloud:
+    config:
+      uri: http://${configServerHost}:${configServerPort}
+#      uri: http://localhost:9078
 
 
