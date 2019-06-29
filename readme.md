@@ -70,6 +70,11 @@
 
  - By default, `Spring Cloud Config` clients will seek `{spring.application.name}.yml`, so if
   `spring.application.name=eureka` then it'll seek `eureka.yml`   
+  
+ - To retrieve different versions of configuration settings, we have to set in `bootstrap.yml` to fetch an
+   alternative label referring to either a `branch` or a `tag`
+   
+ - IntelliJ `MultiRun` plugin to group together several launch configurations into a single command.
 
 
 
