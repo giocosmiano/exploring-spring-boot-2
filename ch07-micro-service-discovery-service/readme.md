@@ -18,6 +18,10 @@ $ java -jar ch07-micro-service-discovery-service-0.0.1-SNAPSHOT.jar
    registering themselves, and allows multiple instances of Eureka to register with each other to develop
    a highly available service registry.
 
+ - [Spring Cloud Netflix Eureka](https://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html)
+
+ - [Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html)
+ 
 ### Further readings
 
  - [Spring Cloud](https://spring.io/projects/spring-cloud)

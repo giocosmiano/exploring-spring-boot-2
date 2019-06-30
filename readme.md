@@ -33,6 +33,10 @@
    registering themselves, and allows multiple instances of Eureka to register with each other to develop
    a highly available service registry.
 
+ - [Spring Cloud Netflix Eureka](https://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html)
+
+ - [Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html)
+
 ### Micro-service circuit breakers
 
  - Annotation, `@EnableCircuitBreaker`, enables [Netflix Hystrix](https://github.com/Netflix/Hystrix),
