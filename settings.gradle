@@ -26,4 +26,5 @@ include 'ch07-micro-service-comment-service'
 include 'ch07-micro-service-image-service'
 include 'ch07-micro-service-hystrix-dashboard'
 include 'ch07-micro-service-config-service'
+include 'ch08-web-sockets-comment-service'
 
