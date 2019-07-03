@@ -57,7 +57,7 @@ spring:
   # To connect IDE to a remotely running application and push code changes over the wire, allowing to automatically make mods and test them immediately
   devtools:
     remote:
-      secret: ch07-micro-service-comment-service
+      secret: ch08-micro-service-comment-service
     restart:
       poll-interval: 4000
   # Normally, when using RabbitMQ, each instance of comments will register its own queue, and

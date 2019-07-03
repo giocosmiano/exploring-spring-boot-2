@@ -1,4 +1,4 @@
-package com.giocosmiano.exploration.chapter07;
+package com.giocosmiano.exploration.chapter08;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;

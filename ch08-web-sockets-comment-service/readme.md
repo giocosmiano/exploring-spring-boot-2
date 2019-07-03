@@ -1,10 +1,10 @@
-### Running `SpringCloudCommentApplication` from the command line
+### Running `WebSocketsCommentApplication` from the command line
 ```
 $ ./gradlew bootRun
 ```
  - OR
 ```
-$ java -jar ch07-micro-service-comment-service-0.0.1-SNAPSHOT.jar
+$ java -jar ch08-web-sockets-comment-service-0.0.1-SNAPSHOT.jar
 ```
 
  - [Actuator](http://localhost:9071/actuator)
