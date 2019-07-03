@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/ch07-micro-service-hystrix-dashboard" />
             <option value="$PROJECT_DIR$/ch07-micro-service-image-service" />
             <option value="$PROJECT_DIR$/ch08-web-sockets-comment-service" />
+            <option value="$PROJECT_DIR$/ch08-web-sockets-config-service" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
