@@ -9,7 +9,7 @@ spring:
       server:
         git:
           uri: https://github.com/giocosmiano/exploring-spring-boot-2.git
-          basedir: file:/${user.home}/Documents/_programming/_programmingJava/exploring-spring-boot-2/ch07-micro-service-config-repo
+          search-paths: ch07-micro-service-config-repo
 
 
 
