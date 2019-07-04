@@ -9,7 +9,7 @@ spring:
       server:
         git:
           uri: https://github.com/giocosmiano/exploring-spring-boot-2.git
-          basedir: file:/${user.home}/Documents/_programming/_programmingJava/exploring-spring-boot-2/ch08-web-sockets-config-repo
+          search-paths: ch08-web-sockets-config-repo
 
 
 
