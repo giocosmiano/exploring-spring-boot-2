@@ -7,7 +7,7 @@ $ ./gradlew bootRun
 $ java -jar ch08-web-sockets-config-service-0.0.1-SNAPSHOT.jar
 ```
 
- - [Spring Cloud Config Server](https://spring.io/projects/spring-cloud-config)
+ - [Web Sockets Config Server](https://spring.io/projects/spring-cloud-config)
  
  - One thing that quickly adds up when building a micro service-based solution are all the properties that
    must be managed. It's one thing to manage a single application's `application.yml` file, and make tweaks
