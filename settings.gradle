@@ -28,4 +28,7 @@ include 'ch07-micro-service-hystrix-dashboard'
 include 'ch07-micro-service-config-service'
 include 'ch08-web-sockets-comment-service'
 include 'ch08-web-sockets-config-service'
+include 'ch08-web-sockets-discovery-service'
+include 'ch08-web-sockets-hystrix-dashboard'
+include 'ch08-web-sockets-image-service'
 
