@@ -1,0 +1,28 @@
+#
+# See config for details
+# https://github.com/giocosmiano/exploring-spring-boot-2/blob/master/ch08-web-sockets-config-repo/src/main/resources/hystrix-dashboard.yaml
+#
+
+# Override the default port 8888 of spring cloud config server
+configServerHost: localhost
+configServerPort: 9078
+
+spring:
+  application:
+    name: hystrix-dashboard
+  cloud:
+    config:
+      uri: http://${configServerHost}:${configServerPort}
+#      uri: http://localhost:9078
+
+# Override the default port 7979 of hystrix dashboard
+# server:
+#   port: 9079
+
+
+
+
+
+
+
+
