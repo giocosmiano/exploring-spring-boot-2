@@ -15,8 +15,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.FluxSink;
 import reactor.core.publisher.Mono;
 
-@Service
-@EnableBinding(Sink.class)
+//@Service
+//@EnableBinding(Sink.class)
 public class WebSocketHandlerCommentService implements WebSocketHandler {
 
     private final static Logger log =

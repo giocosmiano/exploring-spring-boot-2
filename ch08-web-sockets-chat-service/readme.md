@@ -7,7 +7,6 @@ $ ./gradlew bootRun
 $ java -jar ch08-web-sockets-chat-service-0.0.1-SNAPSHOT.jar
 ```
 
- - [Application](http://localhost:9073/)
  - [Actuator](http://localhost:9072/actuator)
  - [Web Sockets Config for Chat Service](http://localhost:9078/chat-service/default) 
 
