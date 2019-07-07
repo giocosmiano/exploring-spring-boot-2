@@ -8,16 +8,17 @@ import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.cloud.stream.reactive.FluxSender;
 import org.springframework.cloud.stream.reactive.StreamEmitter;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.MessageBuilder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.FluxSink;
 import reactor.core.publisher.Mono;
 
-@Controller
+@RestController
 @EnableBinding(Source.class)
 public class CommentController {
     private final MeterRegistry meterRegistry;
@@ -71,8 +72,46 @@ public class CommentController {
                 .autoConnect();
     }
 
+    /*
+     redirect:/ is a Spring Web signal to re-render the page at / via an HTTP redirect. Since we are shifting
+     into dynamically updating the page based on asynchronous WebSocket messages, this is no longer the
+     best way.
+
+     What are the issues? A few can be listed as follows:
+
+     If the comment hasn't been saved (yet), the redirect would re-render the page with no change at all.
+
+     The redirect may cause an update in the midst of handling the new comment's WebSocket message.
+     Based on the race conditions, the comment may not yet be saved, causing it to not appear, and the
+     refresh may miss the asynchronous message, causing the entire comment to not be displayed unless
+     the page is manually refreshed.
+
+     Setting up a WebSocket handler with every new comment isn't efficient.
+
+     Either way, this isn't a good use of resources, and could introduce timing issues. Instead, it's best if we
+     convert this into an AJAX call
+
+     To support the fact that we are now making an AJAX call, and not expecting a redirect, we need to
+     make alterations on the server side.
+     For one thing, we need to change the image micro service's CommentController from being view-based to
+     being a REST controller.
+
+     @Controller marked it as a Spring WebFlux controller that was expected to return the HTTP redirect
+
+     By replacing @Controller with @RestController , we have marked this class as a Spring WebFlux controller
+     with results written directly into the HTTP response body
+
+     The return type has switched from Mono<String> to Mono<ResponseEntity<?>> . ResponseEntity<?> is a Spring
+     Web container that holds HTTP response headers, body, and status code.
+
+     The logic for forwarding messages to the comments service over a FluxSink to Spring Cloud Stream is the same
+
+     The last line of both the if and the else clauses uses the static builder methods of ResponseEntity to
+     generate an HTTP 204 (No Content) response. It indicates success, but no response body is included.
+     Considering the client isn't interested in any content, that's good enough
+     */
     @PostMapping("/comments")
-    public Mono<String> addComment(Mono<Comment> newComment) {
+    public Mono<ResponseEntity<?>> addComment(Mono<Comment> newComment) {
         if (commentSink != null) {
             return newComment
                     .map(comment -> {
@@ -86,10 +125,12 @@ public class CommentController {
                         meterRegistry
                                 .counter("comments.produced", "imageId", comment.getImageId())
                                 .increment();
-                        return Mono.just("redirect:/");
+//                        return Mono.just("redirect:/");
+                        return Mono.just(ResponseEntity.noContent().build());
                     });
         } else {
-            return Mono.just("redirect:/");
+//            return Mono.just("redirect:/");
+            return Mono.just(ResponseEntity.noContent().build());
         }
     }
 

@@ -9,6 +9,10 @@
 
         <h1>Learning Spring Boot - 2nd Edition</h1>
 
+        <input id="username" type="text" />
+        <button id="connect">Connect</button>
+        <button id="disconnect" style="display: none">Disconnect</button>
+
         <div>
             <table>
                 <thead>
@@ -28,17 +32,13 @@
                     </td>
 
                     <td>
-                        <ul>
-                            <li th:each="comment : ${image.comments}"
-                                th:text="${comment.comment}"></li>
+                        <ul th:id="'comments-' + ${image.id}">
+                            <li th:each="comment : ${image.comments}" th:text="${comment.comment}"></li>
                         </ul>
                     </td>
                     <td>
-                        <form th:method="post" th:action="@{'/comments'}">
-                            <input name="comment" value="" type="text" />
-                            <input name="imageId" th:value="${image.id}" type="hidden" />
-                            <input type="submit" />
-                        </form>
+                        <input th:id="'comment-' + ${image.id}" type="text" value="" />
+                        <button th:id="${image.id}" class="comment">Submit</button>
                     </td>
 
                 </tr>
@@ -49,7 +49,152 @@
                 <p><input type="file" name="file" /></p>
                 <p><input type="submit" value="Upload" /></p>
             </form>
+
+            <div id="chatBox" style="display: none">
+                Greetings!
+                <br/>
+                <textarea id="chatDisplay" rows="10" cols="80" disabled="true"></textarea>
+                <br/>
+                <input id="chatInput" type="text" style="width: 500px" value="" />
+                <br/>
+                <button id="chatButton">Send</button>
+                <br/>
+            </div>
         </div>
+
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            (function() {
+
+                /*
+                 document.querySelectorAll('button.comment')
+                 uses a native JavaScript query selector to find all the HTML
+                 buttons that have the class comment .
+
+                 Iterating over each button, an event listener is added, responding to the click events.
+
+                 When a click is received, it fetches the corresponding comment input.
+
+                 Then it fashions an XMLHttpRequest object, opening a POST operation set for asynchronous
+                 communications.
+
+                 With Thymeleaf's JavaScript support, it will plug in the URL for @{'/comments'} upon rendering.
+
+                 Then it constructs a FormData , and loads the same fields as the previous chapter as if we had filled
+                 out an HTML form on the page.
+
+                 It transmits the form data over the wire. Since we don't depend on the results, they are ignored.
+
+                 Finally, it clears out the comment input's entry box
+                 */
+                // Register a handler for each button to make an AJAX call
+                document.querySelectorAll('button.comment').forEach(function (button) {
+                    button.addEventListener('click', function () {
+                        var comment = document.getElementById('comment-' + button.id);
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', /*[[@{'/comments'}]]*/'', true);
+
+                        var formData = new FormData();
+                        formData.append('comment', comment.value);
+                        formData.append('imageId', button.id);
+
+                        xhr.send(formData);
+
+                        comment.value = '';
+                    });
+                });
+
+                /*
+                We start by creating a WebSocket connection at ws://localhost:8200/topic/comments.new .
+
+                With a JavaScript WebSocket object assigned to our socket variable, we then assign event handlers to
+                onopen and onmessage .
+
+                The onopen handler is processed when a connection is first opened on the server. In this case, it
+                merely logs that we have connected.
+
+                The onmessage handler is processed every time a message is issued from the server. In this case, we
+                log the event's data , parse it (assuming it's JSON), construct an HTML LI, and append it to the
+                page's already existing UL based on the comment's imageId
+                */
+                var newComments = null;
+                var outboundChatMessages = null;
+                var inboundChatMessages = null;
+
+                document.getElementById('connect')
+                    .addEventListener('click', function () {
+                        document.getElementById('connect').style.display = 'none';
+                        document.getElementById('disconnect').style.display =
+                                                                        'inline';
+
+                        var usernameInput = document.getElementById('username');
+
+                        document.getElementById('chatBox').style.display = 'inline';
+
+                        // Listen for new comments
+                        newComments = new WebSocket('ws://localhost:9073/topic/comments.new?user='
+                            + usernameInput.value);
+                        newComments.onmessage = function(event) {
+                            console.log('Received ' + event.data + '!');
+                            var parsedMessage = JSON.parse(event.data);
+                            var ul = document.getElementById(
+                                'comments-' + parsedMessage.imageId);
+                            var li = document.createElement('li');
+                            li.appendChild(
+                                document.createTextNode(parsedMessage.comment));
+                            ul.appendChild(li);
+                        };
+
+                        outboundChatMessages = new WebSocket('ws://localhost:9073/app/chatMessage.new?user='
+                            + usernameInput.value);
+
+                        // Post new chat messages
+                        outboundChatMessages.onopen = function(event) {
+                            document.getElementById('chatButton')
+                                .addEventListener('click', function () {
+                                    var chatInput = document.getElementById('chatInput');
+                                    console.log('Publishing "' + chatInput.value + '"');
+                                    outboundChatMessages.send(chatInput.value);
+                                    chatInput.value = '';
+                                    chatInput.focus();
+                                });
+                        };
+
+                        inboundChatMessages =
+                            new WebSocket(
+                            	'ws://localhost:9073/topic/chatMessage.new?user='
+                                + usernameInput.value);
+                        inboundChatMessages.onmessage = function (event) {
+                        	console.log('Received ' + event.data);
+                            var chatDisplay = document.getElementById('chatDisplay');
+                            chatDisplay.value = chatDisplay.value + event.data + '\n';
+                        };
+
+                        usernameInput.value = '';
+                        document.getElementById('chatInput').focus();
+                });
+
+                document.getElementById('disconnect')
+                    .addEventListener('click', function () {
+                        document.getElementById('connect').style.display = 'inline';
+                        document.getElementById('disconnect').style.display = 'none';
+                        document.getElementById('chatBox').style.display = 'none';
+
+                        if (newComments != null) {
+                            newComments.close();
+                        }
+                        if (outboundChatMessages != null) {
+                            outboundChatMessages.close();
+                        }
+                        if (inboundChatMessages != null) {
+                            inboundChatMessages.close();
+                        }
+                    });
+            })();
+            /*]]>*/
+        </script>
 
     </body>
 </html>
