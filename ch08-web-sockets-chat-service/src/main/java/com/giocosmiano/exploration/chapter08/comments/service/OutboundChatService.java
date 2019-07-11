@@ -31,6 +31,25 @@ public class OutboundChatService
 			.autoConnect();
 	}
 
+	/*
+	 It has the same EnableBinding(ChatServicesStreams.class) as the inbound service, indicating that this, too,
+	 will participate with Spring Cloud Streams.
+
+	 The constructor call wires up another one of those FluxSink objects, this time for a Flux or strings.
+
+	 @StreamListener(ChatServiceStreams.BROKER_TO_CLIENT) indicates that this service will be listening for
+	 incoming messages on the brokerToClient channel. When it receives one, it will forward it to
+	 chatMessageSink.
+
+	 This class also implements WebSocketHandler , and each client attaches via the handle(WebSocketSession)
+	 method. It is there that we connect the flux of incoming messages to the WebSocketSession via its send()
+	 method.
+
+	 Because WebSocketSession.send() requires Flux<WebSocketMessage> , we map the Flux<String> into it using
+	 session::textMessage . Nothing to serialize.
+
+	 There is a custom log flag when the Flux finished, and another for when the entire Flux is handled
+	 */
 	@StreamListener(ChatServiceStreams.BROKER_TO_CLIENT)
 	public void listen(Message<String> message) {
 		if (chatMessageSink != null) {
