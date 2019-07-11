@@ -23,6 +23,14 @@ $ java -jar ch08-web-sockets-chat-service-0.0.1-SNAPSHOT.jar
    sessions. In essence, a message that originates in one `WebSocket` session must be transmitted to the
    broker where it can then be forwarded to any other `WebSocket` session that might be interested 
 
+### JSR 356 versus Spring WebFlux messaging
+ - A big limitation of JSR 356 is that it's based on the Servlet 3.1 spec. If we were running Apache
+   Tomcat, we'd have access to that. But being a Reactive Streams application, we are using Netty, putting
+   it off limits.
+
+ - Even if we did switch to Apache Tomcat, there is no support for Reactor types. This is partly due to its
+   blocking API, despite being hitched to an asynchronous programming model
+
 ### Further readings
 
  - [Spring Cloud](https://spring.io/projects/spring-cloud)
