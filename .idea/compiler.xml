@@ -1,16 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <annotationProcessing>
-      <profile default="true" name="Default" enabled="true" />
-    </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="exploring-spring-boot-2.ch06-messaging-with-spring-boot.main" target="1.8" />
-      <module name="exploring-spring-boot-2.ch06-messaging-with-spring-boot.test" target="1.8" />
-      <module name="exploring-spring-boot-2.ch06-rabbitmq-messaging-with-spring-boot.main" target="1.8" />
-      <module name="exploring-spring-boot-2.ch06-rabbitmq-messaging-with-spring-boot.test" target="1.8" />
-      <module name="exploring-spring-boot.ch01-quick-start.main" target="1.8" />
-      <module name="exploring-spring-boot.ch01-quick-start.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch01-quick-start.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch01-quick-start.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch02-reactive-web.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch02-reactive-web.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch03-reactive-data-access.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch03-reactive-data-access.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch04-testing-with-spring-boot.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch04-testing-with-spring-boot.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch05-developer-tools-for-spring-boot.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch05-developer-tools-for-spring-boot.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch06-messaging-with-rabbitmq.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch06-messaging-with-rabbitmq.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch06-spring-cloud-stream-with-rabbitmq.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch06-spring-cloud-stream-with-rabbitmq.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch07-micro-service-comment-service.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch07-micro-service-comment-service.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch07-micro-service-config-service.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch07-micro-service-config-service.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch07-micro-service-discovery-service.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch07-micro-service-discovery-service.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch07-micro-service-hystrix-dashboard.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch07-micro-service-hystrix-dashboard.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch07-micro-service-image-service.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch07-micro-service-image-service.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch08-web-sockets-chat-service.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch08-web-sockets-chat-service.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch08-web-sockets-comment-service.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch08-web-sockets-comment-service.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch08-web-sockets-config-service.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch08-web-sockets-config-service.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch08-web-sockets-discovery-service.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch08-web-sockets-discovery-service.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch08-web-sockets-hystrix-dashboard.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch08-web-sockets-hystrix-dashboard.test" target="1.8" />
+      <module name="exploring-spring-boot-2.ch08-web-sockets-image-service.main" target="1.8" />
+      <module name="exploring-spring-boot-2.ch08-web-sockets-image-service.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

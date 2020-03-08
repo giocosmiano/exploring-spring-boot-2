@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+  config-service:
+    build: ./ch08-web-sockets-config-service
+    command: python app.py
+    volumes:
+     - ./vote:/app
+    ports:
+      - "5000:80"
+    networks:
+      - front-tier
+      - back-tier
+
+  discovery-service:
+    build: ./ch08-web-sockets-discovery-service
+    command: nodemon server.js
+    volumes:
+      - ./result:/app
+    ports:
+      - "5001:80"
+      - "5858:5858"
+    networks:
+      - front-tier
+      - back-tier
+
+  hystrix-dashboard:
+    build: ./ch08-web-sockets-discovery-service
+    command: nodemon server.js
+    depends_on:
+      - "redis"
+      - "db"
+    networks:
+      - back-tier
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports: ["6379"]
+    networks:
+      - back-tier
+
+  db:
+    image: mongo:4.2
+    container_name: db
+    environment:
+      MONGO_INITDB_DATABASE: "SampleCollections"
+      MONGO_INITDB_ROOT_USERNAME: "sampleCollection"
+      MONGO_INITDB_ROOT_PASSWORD: "secret"
+    volumes:
+      - "db-data:/var/lib/mongodb"
+    networks:
+      - back-tier
+
+volumes:
+  db-data:
+
+networks:
+  front-tier:
+  back-tier:
